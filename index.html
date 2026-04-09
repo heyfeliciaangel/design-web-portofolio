@@ -1,0 +1,2416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Felicia Angelica Agatha</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+::selection{background:rgba(236,72,153,0.3);color:#fff;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:#09090b;color:#fff;line-height:1.6;-webkit-font-smoothing:antialiased;}
+
+/* LOADER */
+.loader-overlay{position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#09090b;transition:opacity 0.5s ease, visibility 0.5s ease;}
+.loader-overlay.hidden{opacity:0;visibility:hidden;pointer-events:none;}
+.loader-logo{font-size:22px;font-weight:900;letter-spacing:-0.03em;margin-bottom:32px;color:#ffffff;}
+.loader-logo span{color:#ec4899;}
+.loader-logo .dot-pink{color:#ec4899;}
+.progress-track{width:240px;height:3px;background:rgba(255,255,255,0.06);border-radius:999px;overflow:hidden;position:relative;}
+.progress-fill{width:0%;height:100%;border-radius:999px;background:linear-gradient(90deg,#ec4899,#a78bfa,#ec4899);background-size:200% 100%;animation:fillBar 2s cubic-bezier(0.22,1,0.36,1) forwards, shimmer 1s ease-in-out infinite;position:relative;}
+.progress-fill::after{content:'';position:absolute;right:-2px;top:50%;transform:translateY(-50%);width:10px;height:10px;border-radius:50%;background:#ec4899;box-shadow:0 0 10px 3px rgba(236,72,153,0.5),0 0 25px 6px rgba(236,72,153,0.2);}
+@keyframes fillBar{0%{width:0%;}20%{width:15%;}50%{width:55%;}80%{width:88%;}100%{width:100%;}}
+@keyframes shimmer{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
+.progress-text{margin-top:18px;font-family:'Inter',monospace;font-size:12px;font-weight:600;color:rgba(255,255,255,0.35);letter-spacing:4px;}
+
+/* NAVIGATION */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(9,9,11,0.7);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.05);}
+nav .logo{font-size:15px;font-weight:700;letter-spacing:-0.02em;}
+nav .logo span{color:#ec4899;}
+nav .nav-links{display:flex;gap:28px;}
+nav .nav-links a{font-size:12px;font-weight:500;color:#a1a1aa;text-decoration:none;letter-spacing:0.03em;transition:color .2s;position:relative;}
+nav .nav-links a:hover{color:#fff;}
+nav .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:linear-gradient(90deg,#ec4899,#a78bfa);transition:width 0.3s ease;}
+nav .nav-links a:hover::after, nav .nav-links a.active-nav::after{width:100%;}
+nav .nav-links a.active-nav{color:#ec4899;}
+
+/* SECTION UMUM */
+section{padding:100px 48px;max-width:1200px;margin:0 auto;}
+.section-label{font-size:11px;font-weight:600;color:#ec4899;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:10px;}
+.section-title{font-size:42px;font-weight:800;letter-spacing:-0.03em;line-height:1.15;margin-bottom:40px;}
+.section-subtitle{font-size:16px;color:#a1a1aa;line-height:1.8;max-width:750px;margin-bottom:40px;}
+
+/* HERO SECTION */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding-top:100px;position:relative;width:100%;max-width:100%;margin:0;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(236,72,153,0.08);border:1px solid rgba(236,72,153,0.2);border-radius:100px;padding:10px 24px;font-size:12px;font-weight:500;color:#f472b6;letter-spacing:0.08em;margin-bottom:36px;}
+.hero-badge .dot{width:6px;height:6px;background:#ec4899;border-radius:50%;animation:pulse-d 2s infinite;}
+@keyframes pulse-d{0%,100%{opacity:1;}50%{opacity:.3;}}
+.hero-name{font-size:64px;font-weight:900;letter-spacing:-0.04em;line-height:1.2;margin-bottom:12px;background:linear-gradient(to right,#fff,#a1a1aa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;word-break:break-word;max-width:100%;padding:0 16px;text-align:center;}
+.hero-tagline{font-size:18px;color:#71717a;font-weight:400;margin-bottom:48px;max-width:550px;border-right:2px solid #ec4899;}
+.hero-cta{display:inline-flex;align-items:center;gap:10px;background:#fff;color:#09090b;padding:14px 32px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;transition:transform .2s,box-shadow .2s;}
+.hero-cta:hover{transform:translateY(-2px);box-shadow:0 20px 40px rgba(255,255,255,0.08);}
+.hero-scroll{position:absolute;bottom:60px;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:11px;color:#52525b;letter-spacing:0.1em;}
+.hero-scroll .arrow{width:1px;height:30px;background:linear-gradient(to bottom,#52525b,transparent);animation:scroll-arr 2s infinite;}
+@keyframes scroll-arr{0%,100%{opacity:.3;}50%{opacity:1;}}
+
+/* HERO NEW */
+.hero-new{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:100px 48px;position:relative;z-index:2;background:radial-gradient(ellipse at 30% 0%, rgba(236,72,153,0.08), transparent 70%);}
+#hero-new{scroll-margin-top:80px;}
+.hero-new-container{max-width:1200px;width:100%;margin:0 auto;display:grid;grid-template-columns:1fr 0.8fr;gap:60px;align-items:center;}
+.hero-new-content{display:flex;flex-direction:column;gap:24px;}
+.hero-new-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(236,72,153,0.08);border:1px solid rgba(236,72,153,0.2);border-radius:100px;padding:8px 20px;font-size:12px;font-weight:500;color:#f472b6;letter-spacing:0.08em;width:fit-content;}
+.hero-new-name{font-size:48px;font-weight:800;letter-spacing:-0.03em;line-height:1.2;background:linear-gradient(to right,#fff,#a1a1aa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-new-description{font-size:16px;color:#a1a1aa;line-height:1.7;}
+.hero-new-quote{font-size:14px;color:#f472b6;font-style:italic;border-left:3px solid #ec4899;padding-left:16px;}
+.hero-new-buttons{display:flex;gap:16px;flex-wrap:wrap;margin-top:8px;}
+.btn-cv-new, .btn-projects-new{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:40px;font-size:14px;font-weight:600;text-decoration:none;transition:all 0.3s ease;}
+.btn-cv-new{background:#fff;color:#09090b;}
+.btn-cv-new:hover{transform:translateY(-2px);box-shadow:0 10px 25px -8px rgba(255,255,255,0.3);}
+.btn-projects-new{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#fff;}
+.btn-projects-new:hover{background:rgba(236,72,153,0.15);border-color:rgba(236,72,153,0.3);transform:translateY(-2px);}
+.hero-new-stats{display:flex;gap:32px;margin-top:16px;}
+.stat-new{text-align:left;}
+.stat-new-number{font-size:32px;font-weight:800;color:#fff;line-height:1;}
+.stat-new-label{font-size:11px;color:#71717a;text-transform:uppercase;letter-spacing:0.05em;margin-top:4px;}
+.hero-new-photo{display:flex;justify-content:center;align-items:center;}
+.profile-new-img{width:100%;max-width:350px;aspect-ratio:1/1;border-radius:24px;object-fit:cover;background:linear-gradient(135deg,rgba(236,72,153,0.15),rgba(139,92,246,0.15));border:1px solid rgba(255,255,255,0.1);transition:all 0.3s ease, transform 0.1s ease-out;box-shadow:0 0 20px rgba(236,72,153,0.2);will-change:transform;}
+.profile-new-img:hover{transform:scale(1.02);box-shadow:0 0 30px rgba(236,72,153,0.5),0 0 50px rgba(139,92,246,0.3);border-color:rgba(236,72,153,0.4);}
+
+/* ABOUT GRID */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
+.about-card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:20px;padding:36px;transition:transform 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.35s ease, box-shadow 0.35s ease;}
+.about-card:hover{transform:translateY(-5px);border-color:rgba(255,255,255,0.3);background:rgba(236,72,153,0.08);box-shadow:0 0 20px rgba(255,255,255,0.3),0 0 40px rgba(255,255,255,0.1),0 8px 25px rgba(0,0,0,0.2);}
+.about-card h3{font-size:15px;font-weight:600;margin-bottom:18px;color:#e4e4e7;}
+.info-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+.info-row:last-child{border-bottom:none;}
+.info-row .label{font-size:13px;color:#71717a;}
+.info-row .value{font-size:13px;color:#e4e4e7;font-weight:500;}
+.skill-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+.skill-tag{background:rgba(236,72,153,0.06);border:1px solid rgba(236,72,153,0.12);border-radius:8px;padding:8px 16px;font-size:12px;color:#d4d4d8;font-weight:500;transition:all 0.25s ease;}
+.skill-tag:hover{transform:translateY(-2px);background:rgba(236,72,153,0.12);border-color:rgba(236,72,153,0.25);}
+
+/* SOFTWARE & TOOLS */
+.sw-section{margin-top:4px;}
+.sw-category{margin-bottom:16px;}
+.sw-category:last-child{margin-bottom:0;}
+.sw-cat-label{font-size:10px;font-weight:600;color:#52525b;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:8px;}
+.sw-items{display:flex;gap:8px;flex-wrap:wrap;}
+.sw-tool{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:8px 14px 8px 10px;transition:all 0.25s ease;}
+.sw-tool:hover{transform:translateY(-2px);background:rgba(236,72,153,0.12);border-color:rgba(236,72,153,0.25);}
+.sw-tool-icon{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;}
+.sw-tool-icon svg{width:20px;height:20px;}
+.sw-tool span{font-size:12px;color:#a1a1aa;font-weight:500;}
+.software-tools-card{grid-column:span 2;}
+
+/* HELP BOX */
+.help-box{background:linear-gradient(135deg,rgba(236,72,153,0.06),rgba(139,92,246,0.06));border:1px solid rgba(236,72,153,0.12);border-radius:20px;padding:44px;text-align:center;animation:subtleFloat 6s ease-in-out infinite;}
+@keyframes subtleFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
+.help-box p{font-size:17px;color:#d4d4d8;line-height:1.9;max-width:800px;margin:0 auto;font-weight:400;}
+.help-box .pink{color:#f472b6;font-weight:600;}
+.divider{width:100%;height:1px;background:linear-gradient(to right,transparent,rgba(255,255,255,0.08),transparent);margin:0 auto;}
+
+/* CASE STUDY COMPONENTS */
+.case-header{display:flex;align-items:center;gap:18px;margin-bottom:40px;}
+.case-header-text h2{font-size:22px;font-weight:700;letter-spacing:-0.02em;}
+.case-header-text p{font-size:13px;color:#71717a;margin-top:2px;}
+.case-period{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:6px 14px;font-size:12px;color:#a1a1aa;font-weight:500;margin-top:6px;}
+.cg-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:36px;}
+.cg-box{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:28px;transition:transform 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.35s ease, box-shadow 0.35s ease;}
+.cg-box:hover{transform:translateY(-5px);border-color:rgba(255,255,255,0.3);background:rgba(236,72,153,0.08);box-shadow:0 0 20px rgba(255,255,255,0.3),0 0 40px rgba(255,255,255,0.1),0 8px 25px rgba(0,0,0,0.2);}
+.cg-tag{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;display:inline-block;padding:4px 12px;border-radius:6px;margin-bottom:14px;}
+.cg-tag.role {background: rgba(139, 92, 246, 0.1);color: #a78bfa;border: 1px solid rgba(139, 92, 246, 0.2);}
+.cg-tag.challenge{background:rgba(251,146,60,0.1);color:#fb923c;border:1px solid rgba(251,146,60,0.2);}
+.cg-tag.goal{background:rgba(52,211,153,0.1);color:#34d399;border:1px solid rgba(52,211,153,0.2);}
+.cg-box p,.cg-box li{font-size:14px;color:#a1a1aa;line-height:1.7;}
+.cg-box ul{list-style:none;padding:0;}
+.cg-box ul li{padding:5px 0 5px 18px;position:relative;}
+.cg-box ul li::before{content:'';position:absolute;left:0;top:13px;width:5px;height:5px;border-radius:50%;background:#34d399;}
+
+/* STATS CARDS */
+.impact-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:36px;}
+.impact-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:24px 20px;text-align:center;transition:transform 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.35s ease, box-shadow 0.35s ease;}
+.impact-card:hover{transform:translateY(-5px);border-color:rgba(255,255,255,0.3);background:rgba(236,72,153,0.08);box-shadow:0 0 20px rgba(255,255,255,0.3),0 0 40px rgba(255,255,255,0.1),0 8px 25px rgba(0,0,0,0.2);}
+.impact-card .num{font-size:30px;font-weight:800;letter-spacing:-0.02em;margin-bottom:2px;background:linear-gradient(135deg,#ec4899,#f97316,#ec4899);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:textShine 3s linear infinite;}
+@keyframes textShine{0%{background-position:0% 50%;}100%{background-position:200% 50%;}}
+.impact-card .met{font-size:11px;color:#71717a;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;}
+.blue-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:36px;}
+.blue-stat{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:24px 20px;text-align:center;transition:transform 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.35s ease, box-shadow 0.35s ease;}
+.blue-stat:hover{transform:translateY(-5px);border-color:rgba(255,255,255,0.3);background:rgba(236,72,153,0.08);box-shadow:0 0 20px rgba(255,255,255,0.3),0 0 40px rgba(255,255,255,0.1),0 8px 25px rgba(0,0,0,0.2);}
+.blue-stat .num{font-size:30px;font-weight:800;margin-bottom:2px;background:linear-gradient(135deg,#ec4899,#f97316,#ec4899);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:textShine 3s linear infinite;}
+.blue-stat .met{font-size:11px;color:#71717a;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;}
+
+/* APPROACH & BEFORE-AFTER */
+.approach-box{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:32px;margin-bottom:36px;}
+.approach-box h3{font-size:16px;font-weight:600;margin-bottom:18px;}
+.approach-step{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+.approach-step:last-child{border-bottom:none;}
+.approach-step .as-num{width:28px;height:28px;border-radius:8px;background:rgba(99,102,241,0.12);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#818cf8;flex-shrink:0;}
+.approach-step .as-text h4{font-size:14px;font-weight:600;color:#e4e4e7;margin-bottom:2px;}
+.approach-step .as-text p{font-size:13px;color:#71717a;}
+.before-after-box{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:28px 32px;margin-bottom:36px;}
+.before-after-box .ba-label{font-size:11px;font-weight:600;color:#52525b;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:14px;}
+.before-after-box .ba-line{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.before-after-box .ba-before{font-size:14px;color:#71717a;font-style:italic;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:10px 18px;}
+.ba-arrow{font-size:18px;color:#818cf8;font-weight:700;animation:arrowPulse 2s ease-in-out infinite;}
+@keyframes arrowPulse{0%,100%{transform:translateX(0);}50%{transform:translateX(4px);}}
+.before-after-box .ba-after{font-size:15px;color:#c7d2fe;font-weight:500;background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.15);border-radius:8px;padding:10px 18px;}
+
+/* TESTIMONIALS */
+.testi-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:36px;}
+.testi-card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:20px 22px;transition:transform 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.35s ease, box-shadow 0.35s ease;}
+.testi-card:hover{transform:translateY(-5px);border-color:rgba(255,255,255,0.3);background:rgba(236,72,153,0.08);box-shadow:0 0 20px rgba(255,255,255,0.3),0 0 40px rgba(255,255,255,0.1),0 8px 25px rgba(0,0,0,0.2);}
+.testi-card .tc-name{font-size:12px;font-weight:600;color:#818cf8;margin-bottom:8px;}
+.testi-card .tc-handle{font-size:11px;color:#52525b;margin-bottom:10px;}
+.testi-card .tc-text{font-size:12px;color:#a1a1aa;line-height:1.7;font-style:italic;}
+.testi-card.full-width{grid-column:1/-1;}
+
+/* WORDING SAMPLES */
+.wording-grid-fix {display: grid !important;grid-template-columns: repeat(3, 1fr) !important;gap: 20px !important;width: 100% !important;margin: 0 !important;padding: 0 !important;}
+@media (max-width: 900px) {.wording-grid-fix {grid-template-columns: repeat(2, 1fr) !important;}}
+@media (max-width: 600px) {.wording-grid-fix {grid-template-columns: 1fr !important;}}
+.wording-card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:14px;overflow:auto;transition:transform 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.35s ease, box-shadow 0.35s ease;max-height: 550px;display: flex;flex-direction: column;}
+.wording-card > div {flex-shrink: 0;}
+.wording-card::-webkit-scrollbar {width: 4px;}
+.wording-card::-webkit-scrollbar-track {background: rgba(255,255,255,0.05);border-radius: 10px;}
+.wording-card::-webkit-scrollbar-thumb {background: #ec4899;border-radius: 10px;}
+.wording-card:hover{transform:translateY(-5px);border-color:rgba(255,255,255,0.3);background:rgba(236,72,153,0.08);box-shadow:0 0 20px rgba(255,255,255,0.3),0 0 40px rgba(255,255,255,0.1),0 8px 25px rgba(0,0,0,0.2);}
+.wording-thumb{width:100%;height:320px;background:rgba(99,102,241,0.04);display:flex;align-items:center;justify-content:center;padding:20px;position:relative;}
+.wording-thumb .placeholder-text{font-size:11px;color:#3f3f46;text-align:center;line-height:1.6;}
+.wording-label{padding:12px 16px;font-size:11px;color:#52525b;font-weight:500;text-align:center;border-top:1px solid rgba(255,255,255,0.04);}
+.sample-note{margin-top:10px;padding:14px 18px;background:rgba(99,102,241,0.05);border:1px solid rgba(99,102,241,0.12);border-radius:10px;font-size:12px;color:#a1a1aa;line-height:1.7;}
+.sample-note strong{color:#818cf8;}
+
+/* PILLAR GRID */
+.pillar-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:36px;}
+.pillar-item{background:rgba(236,72,153,0.04);border:1px solid rgba(236,72,153,0.1);border-radius:12px;padding:20px 16px;text-align:center;transition:transform 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.35s ease, box-shadow 0.35s ease;}
+.pillar-item:hover{transform:translateY(-5px);border-color:rgba(255,255,255,0.3);background:rgba(236,72,153,0.08);box-shadow:0 0 20px rgba(255,255,255,0.3),0 0 40px rgba(255,255,255,0.1),0 8px 25px rgba(0,0,0,0.2);}
+.pillar-item .pi-emoji{font-size:22px;margin-bottom:8px;display:block;}
+.pillar-item .pi-name{font-size:13px;font-weight:600;color:#e4e4e7;margin-bottom:4px;}
+.pillar-item .pi-desc{font-size:11px;color:#71717a;line-height:1.5;}
+
+/* STRATEGY LINE */
+.strategy-line{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:28px 32px;margin-bottom:36px;}
+.strategy-line h3{font-size:15px;font-weight:600;margin-bottom:14px;}
+.strategy-flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;color:#d4d4d8;}
+.strategy-flow .sf-item{background:rgba(236,72,153,0.08);border:1px solid rgba(236,72,153,0.15);border-radius:8px;padding:8px 16px;font-weight:500;}
+.strategy-flow .sf-arrow{color:#52525b;font-size:16px;}
+.strategy-flow .sf-result{color:#34d399;font-weight:600;}
+.tags-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;}
+.mini-tag{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:6px 14px;font-size:11px;color:#a1a1aa;font-weight:500;transition:all 0.25s ease;}
+.mini-tag:hover{transform:translateY(-2px);background:rgba(236,72,153,0.12);border-color:rgba(236,72,153,0.25);}
+
+/* THUMBNAIL GRID */
+.sw-thumb-grid{display:flex;gap:16px;overflow-x:auto;padding-bottom:12px;margin-bottom:36px;}
+.sw-thumb-card{flex:0 0 200px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;overflow:hidden;transition:transform 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.35s ease, box-shadow 0.35s ease;}
+.sw-thumb-card:hover{transform:translateY(-5px);border-color:rgba(255,255,255,0.3);background:rgba(236,72,153,0.08);box-shadow:0 0 20px rgba(255,255,255,0.3),0 0 40px rgba(255,255,255,0.1),0 8px 25px rgba(0,0,0,0.2);}
+.sw-thumb-img{position:relative;width:100%;aspect-ratio:4/5;background:rgba(139,92,246,0.06);overflow:hidden;}
+.sw-thumb-img .sw-thumb-image{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease;}
+.sw-thumb-card:hover .sw-thumb-image{transform:scale(1.05);}
+.sw-thumb-img .sw-play-overlay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:40px;height:40px;background:rgba(0,0,0,0.7);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:18px;pointer-events:none;transition:all 0.2s ease;}
+.sw-thumb-link:hover .sw-play-overlay{background:rgba(0,0,0,0.9);transform:translate(-50%,-50%) scale(1.1);}
+.sw-thumb-caption{padding:10px 12px;}
+.sw-thumb-caption .tc-title{font-size:11px;color:#d4d4d8;font-weight:500;margin-bottom:2px;}
+.sw-thumb-caption .tc-desc{font-size:10px;color:#52525b;}
+
+/* REELS 2 LAYER GRID */
+.reels-grid-2layer{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:40px;}
+.reels-grid-2layer .reel-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px;overflow:hidden;transition:all 0.35s cubic-bezier(0.16,1,0.3,1);}
+.reels-grid-2layer .reel-card:hover{transform:translateY(-5px);border-color:rgba(236,72,153,0.3);box-shadow:0 20px 35px -12px rgba(0,0,0,0.3);}
+.reels-grid-2layer .reel-img{position:relative;width:100%;aspect-ratio:9/16;overflow:hidden;background:linear-gradient(135deg,rgba(236,72,153,0.1),rgba(139,92,246,0.1));}
+.reels-grid-2layer .reel-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease;}
+.reels-grid-2layer .reel-card:hover .reel-img img{transform:scale(1.05);}
+.reels-grid-2layer .reel-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s ease;}
+.reels-grid-2layer .reel-card:hover .reel-overlay{opacity:1;}
+.reels-grid-2layer .reel-play{width:50px;height:50px;background:rgba(255,255,255,0.2);backdrop-filter:blur(4px);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:20px;transition:transform 0.3s ease;}
+.reels-grid-2layer .reel-card:hover .reel-play{transform:scale(1.1);}
+.reels-grid-2layer .reel-info{padding:12px;text-align:center;}
+.reels-grid-2layer .reel-title{font-size:12px;font-weight:500;color:#d4d4d8;margin-bottom:4px;}
+
+/* CATALOG SECTION */
+.catalog-section{margin-bottom:36px;}
+.catalog-label{font-size:14px;font-weight:600;color:#e4e4e7;margin-bottom:16px;}
+.catalog-item{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;overflow:hidden;transition:transform 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.35s ease, box-shadow 0.35s ease;}
+.catalog-item:hover{transform:translateY(-5px);border-color:rgba(255,255,255,0.3);background:rgba(236,72,153,0.08);box-shadow:0 0 20px rgba(255,255,255,0.3),0 0 40px rgba(255,255,255,0.1),0 8px 25px rgba(0,0,0,0.2);}
+
+/* ANTIKODE SECTION */
+.ak-dual-header{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:24px;}
+.ak-dual-item{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:24px;transition:transform 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.35s ease, box-shadow 0.35s ease;}
+.ak-dual-item:hover{transform:translateY(-5px);border-color:rgba(255,255,255,0.3);background:rgba(236,72,153,0.08);box-shadow:0 0 20px rgba(255,255,255,0.3),0 0 40px rgba(255,255,255,0.1),0 8px 25px rgba(0,0,0,0.2);}
+.ak-dual-item .ad-role{font-size:10px;font-weight:700;color:#ec4899;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;}
+.ak-dual-item .ad-title{font-size:16px;font-weight:700;color:#e4e4e7;margin-bottom:4px;}
+.ak-dual-item .ad-period{font-size:12px;color:#71717a;margin-bottom:8px;}
+.ak-dual-item .ad-desc{font-size:12px;color:#a1a1aa;line-height:1.6;}
+.ak-dual-item .ad-team{margin-top:10px;padding:8px 12px;background:rgba(139,92,246,0.06);border:1px solid rgba(139,92,246,0.1);border-radius:8px;font-size:11px;color:#a78bfa;}
+
+/* ECOSYSTEM & PROGRESSION */
+.ecosystem-box{background:rgba(139,92,246,0.04);border:1px solid rgba(139,92,246,0.1);border-radius:16px;padding:28px 32px;margin-bottom:36px;}
+.ecosystem-box h3{font-size:15px;font-weight:600;color:#a78bfa;margin-bottom:16px;}
+.eco-flow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.eco-node{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:10px 16px;font-size:12px;color:#d4d4d8;font-weight:500;text-align:center;}
+.eco-node.me{background:rgba(236,72,153,0.1);border:1px solid rgba(236,72,153,0.2);color:#f472b6;font-weight:600;}
+.eco-arrow{color:#3f3f46;font-size:14px;}
+.eco-note{margin-top:14px;font-size:12px;color:#71717a;line-height:1.6;}
+.progression-box{background:rgba(52,211,153,0.04);border:1px solid rgba(52,211,153,0.1);border-radius:16px;padding:28px 32px;margin-bottom:36px;}
+.progression-box h3{font-size:15px;font-weight:600;color:#34d399;margin-bottom:16px;}
+.prog-steps{display:flex;gap:0;align-items:stretch;}
+.prog-step{flex:1;padding:16px;text-align:center;position:relative;}
+.prog-step .ps-phase{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;}
+.prog-step .ps-label{font-size:13px;font-weight:600;color:#e4e4e7;margin-bottom:6px;}
+.prog-step .ps-desc{font-size:11px;color:#71717a;line-height:1.5;}
+.prog-step.intern .ps-phase{color:#a78bfa;}
+.prog-step.freelance .ps-phase{color:#34d399;}
+.prog-connector{display:flex;align-items:center;color:#3f3f46;font-size:20px;padding:0 6px;flex-shrink:0;}
+.prog-connector .arrow-line{width:20px;height:2px;background:linear-gradient(to right,#a78bfa,#34d399);border-radius:2px;}
+.prog-connector .arrow-head{color:#34d399;font-size:14px;}
+
+/* WORKFLOW BOXES */
+.wf-flow-box{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:28px 32px;margin-bottom:36px;}
+.wf-flow-box h3{font-size:15px;font-weight:600;margin-bottom:6px;}
+.wf-flow-box .wf-sublabel{font-size:12px;color:#71717a;margin-bottom:16px;}
+.wf-flow-note{margin-top:14px;font-size:12px;color:#71717a;line-height:1.6;}
+.alva-flow-box{background:rgba(59,130,246,0.04);border:1px solid rgba(59,130,246,0.1);border-radius:16px;padding:28px 32px;margin-bottom:36px;}
+.alva-flow-box h3{font-size:15px;font-weight:600;color:#60a5fa;margin-bottom:6px;}
+.alva-note{margin-top:14px;font-size:12px;color:#71717a;line-height:1.6;}
+.wf-result{background:rgba(52,211,153,0.05);border:1px solid rgba(52,211,153,0.12);border-radius:16px;padding:28px 32px;margin-bottom:36px;}
+.wf-result h3{font-size:15px;font-weight:600;color:#34d399;margin-bottom:16px;}
+.wf-result-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.wf-rs{text-align:center;}
+.wf-rs .num{font-size:26px;font-weight:800;color:#34d399;margin-bottom:2px;}
+.wf-rs .lab{font-size:11px;color:#71717a;line-height:1.4;}
+
+/* CHANNEL GRID */
+.channel-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:36px;}
+.ch-card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:28px 24px;position:relative;overflow:hidden;transition:transform 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.35s ease, box-shadow 0.35s ease;}
+.ch-card:hover{transform:translateY(-5px);border-color:rgba(255,255,255,0.3);background:rgba(236,72,153,0.08);box-shadow:0 0 20px rgba(255,255,255,0.3),0 0 40px rgba(255,255,255,0.1),0 8px 25px rgba(0,0,0,0.2);}
+.ch-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.ch-card.ig::before{background:linear-gradient(to right,#f09433,#dc2743,#bc1888);}
+.ch-card.li::before{background:#0a66c2;}
+.ch-card.web::before{background:#34d399;}
+.ch-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:16px;}
+.ch-card.ig .ch-icon{background:rgba(225,48,108,0.1);}
+.ch-card.li .ch-icon{background:rgba(10,102,194,0.1);}
+.ch-card.web .ch-icon{background:rgba(52,211,153,0.1);}
+.ch-card h3{font-size:17px;font-weight:700;margin-bottom:4px;}
+.ch-card .ch-sub{font-size:11px;color:#71717a;margin-bottom:16px;line-height:1.4;}
+.ch-stats{display:flex;flex-direction:column;gap:8px;}
+.ch-row{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:rgba(255,255,255,0.02);border-radius:8px;}
+.ch-row .lab{font-size:12px;color:#a1a1aa;}
+.ch-row .val{font-size:13px;font-weight:700;}
+.ch-card.ig .val{color:#f472b6;}
+.ch-card.li .val{color:#60a5fa;}
+.ch-card.web .val{color:#34d399;}
+.ch-note{margin-top:14px;padding:12px 14px;background:rgba(255,255,255,0.02);border-radius:8px;border-left:3px solid;}
+.ch-card.ig .ch-note{border-color:#f472b6;}
+.ch-card.li .ch-note{border-color:#60a5fa;}
+.ch-card.web .ch-note{border-color:#34d399;}
+.ch-note p{font-size:11px;color:#71717a;line-height:1.6;}
+
+/* PRODUCTION STATS */
+.prod-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:36px;}
+.prod-stat{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:24px 16px;text-align:center;transition:transform 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.35s ease, box-shadow 0.35s ease;}
+.prod-stat:hover{transform:translateY(-5px);border-color:rgba(255,255,255,0.3);background:rgba(236,72,153,0.08);box-shadow:0 0 20px rgba(255,255,255,0.3),0 0 40px rgba(255,255,255,0.1),0 8px 25px rgba(0,0,0,0.2);}
+.prod-stat .ps-icon{width:36px;height:36px;border-radius:50%;background:rgba(139,92,246,0.1);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:14px;}
+.prod-stat .num{font-size:26px;font-weight:800;color:#fff;margin-bottom:2px;}
+.prod-stat .met{font-size:10px;color:#71717a;font-weight:500;line-height:1.4;}
+
+/* TAKEAWAY LIST */
+.takeaway-list{display:flex;flex-direction:column;gap:14px;margin-bottom:36px;}
+.tk-item{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:24px 28px;display:flex;gap:16px;align-items:flex-start;transition:transform 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.35s ease, box-shadow 0.35s ease;}
+.tk-item:hover{transform:translateY(-5px);border-color:rgba(255,255,255,0.3);background:rgba(236,72,153,0.08);box-shadow:0 0 20px rgba(255,255,255,0.3),0 0 40px rgba(255,255,255,0.1),0 8px 25px rgba(0,0,0,0.2);}
+.tk-icon{width:40px;height:40px;background:linear-gradient(135deg,rgba(236,72,153,0.1),rgba(139,92,246,0.1));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.tk-text h4{font-size:15px;font-weight:600;color:#e4e4e7;margin-bottom:4px;}
+.tk-text p{font-size:13px;color:#a1a1aa;line-height:1.7;}
+
+/* VIDEO & OTHER GRID */
+.video-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:36px;}
+.video-card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:14px;overflow:hidden;transition:transform 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.35s ease, box-shadow 0.35s ease;}
+.video-card:hover{transform:translateY(-5px);border-color:rgba(255,255,255,0.3);background:rgba(236,72,153,0.08);box-shadow:0 0 20px rgba(255,255,255,0.3),0 0 40px rgba(255,255,255,0.1),0 8px 25px rgba(0,0,0,0.2);}
+.video-link{text-decoration:none;display:block;}
+.video-thumb{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;transition:transform 0.5s ease;}
+.video-card:hover .video-thumb{transform:scale(1.05);}
+.play-icon-overlay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(0,0,0,0.7);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:24px;pointer-events:none;transition:all 0.2s ease;}
+.video-link:hover .play-icon-overlay{background:rgba(0,0,0,0.9);transform:translate(-50%,-50%) scale(1.1);}
+.video-placeholder{width:100%;height:280px;background:rgba(236,72,153,0.04);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:20px;position:relative;overflow:hidden;}
+.video-caption{padding:16px 20px;}
+.video-caption .vc-platform{font-size:10px;font-weight:600;color:#52525b;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;}
+.video-caption .vc-title{font-size:14px;font-weight:600;color:#e4e4e7;margin-bottom:4px;}
+.other-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:48px;}
+.other-card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:14px;overflow:hidden;transition:transform 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.35s ease, box-shadow 0.35s ease;}
+.other-card:hover{transform:translateY(-5px);border-color:rgba(255,255,255,0.3);background:rgba(236,72,153,0.08);box-shadow:0 0 20px rgba(255,255,255,0.3),0 0 40px rgba(255,255,255,0.1),0 8px 25px rgba(0,0,0,0.2);}
+.other-placeholder{position:relative;width:100%;aspect-ratio:4/5;background:rgba(236,72,153,0.04);overflow:hidden;}
+.other-thumb{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease;}
+.other-card:hover .other-thumb{transform:scale(1.05);}
+.other-caption{padding:16px 20px;}
+.other-caption .oc-platform{font-size:10px;font-weight:600;color:#52525b;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;}
+.other-caption .oc-title{font-size:14px;font-weight:600;color:#e4e4e7;margin-bottom:4px;}
+
+/* MARQUEE CLIENT */
+.marquee-row{width:100%;overflow:hidden;margin-bottom:12px;padding:8px 0;}
+.marquee-track{display:flex;gap:12px;width:max-content;animation-duration:30s;animation-iteration-count:infinite;animation-timing-function:linear;}
+.marquee-right{animation-name:scrollRight;}
+.marquee-left{animation-name:scrollLeft;}
+@keyframes scrollRight{0%{transform:translateX(-50%);}100%{transform:translateX(0%);}}
+@keyframes scrollLeft{0%{transform:translateX(0%);}100%{transform:translateX(-50%);}}
+.client-chip{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:40px;padding:6px 18px;font-size:13px;font-weight:500;color:#d4d4d8;white-space:nowrap;transition:all 0.2s ease;}
+.client-chip:hover{background:rgba(255,255,255,0.1);border-color:rgba(139,92,246,0.4);color:#c4b5fd;transform:translateY(-2px);}
+.industry-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px;}
+.ind-tag{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:8px 16px;font-size:12px;color:#a1a1aa;font-weight:500;transition:all 0.25s ease;}
+.ind-tag:hover{transform:translateY(-2px);background:rgba(236,72,153,0.12);border-color:rgba(236,72,153,0.25);}
+
+/* NOTE BOX */
+.note-box{padding:16px 20px;border-radius:10px;margin-top:16px;font-size:12px;color:#a1a1aa;line-height:1.7;}
+.note-box.orange{background:rgba(251,146,60,0.05);border:1px solid rgba(251,146,60,0.12);}
+.note-box.orange strong{color:#fb923c;}
+.note-box.purple{background:rgba(139,92,246,0.05);border:1px solid rgba(139,92,246,0.12);}
+.note-box.purple strong{color:#a78bfa;}
+.note-box .nb-label{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;display:block;}
+.note-box.orange .nb-label{color:#fb923c;}
+.note-box.purple .nb-label{color:#a78bfa;}
+
+/* SW LIST */
+.sw-list{display:flex;flex-direction:column;gap:8px;}
+.sw-list-item{display:flex;align-items:center;gap:12px;padding:12px 16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);border-radius:10px;transition:transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;}
+.sw-list-item:hover{transform:translateX(4px);border-color:rgba(139,92,246,0.2);background:rgba(139,92,246,0.04);}
+.sw-list-item .sw-num{font-size:11px;font-weight:700;color:#52525b;width:20px;flex-shrink:0;}
+.sw-list-item .sw-title{font-size:13px;color:#d4d4d8;font-weight:500;}
+.sw-list-item .sw-link{margin-left:auto;font-size:12px;color:#8b5cf6;text-decoration:none;font-weight:500;transition:color .2s;}
+.sw-list-item .sw-link:hover{color:#c4b5fd;}
+.sw-cat-head{font-size:13px;font-weight:600;color:#e4e4e7;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.sw-cat-head .cat-count{font-size:11px;font-weight:600;color:#71717a;background:rgba(255,255,255,0.04);border-radius:6px;padding:3px 10px;}
+
+/* PROJECTS SECTION */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:28px;margin-top:48px;}
+.project-card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:20px;overflow:hidden;transition:all 0.35s cubic-bezier(0.16,1,0.3,1);cursor:pointer;}
+.project-card:hover{transform:translateY(-6px);border-color:rgba(236,72,153,0.4);box-shadow:0 20px 35px -12px rgba(0,0,0,0.4),0 0 0 1px rgba(236,72,153,0.2);}
+.project-img{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;background:linear-gradient(135deg,rgba(236,72,153,0.1),rgba(139,92,246,0.1));}
+.project-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease;}
+.project-card:hover .project-img img{transform:scale(1.05);}
+.project-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s ease;}
+.project-card:hover .project-overlay{opacity:1;}
+.project-overlay span{font-size:32px;color:white;background:rgba(255,255,255,0.2);width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);}
+.project-info{padding:20px;}
+.project-title{font-size:18px;font-weight:700;color:#e4e4e7;margin-bottom:6px;}
+.project-category{font-size:12px;color:#ec4899;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:12px;}
+.project-desc{font-size:13px;color:#a1a1aa;line-height:1.6;margin-bottom:16px;}
+.project-tech{display:flex;gap:8px;flex-wrap:wrap;}
+.project-tech span{font-size:10px;background:rgba(236,72,153,0.1);border:1px solid rgba(236,72,153,0.2);padding:4px 10px;border-radius:20px;color:#f472b6;transition:all 0.2s ease;}
+.project-tech span:hover{background:rgba(236,72,153,0.2);transform:translateY(-1px);}
+.projects-filter{display:flex;justify-content:center;gap:12px;margin-bottom:40px;flex-wrap:wrap;}
+.filter-btn{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);padding:8px 24px;border-radius:40px;font-size:13px;font-weight:500;color:#a1a1aa;cursor:pointer;transition:all 0.25s ease;}
+.filter-btn:hover,.filter-btn.active-filter{background:rgba(236,72,153,0.15);border-color:rgba(236,72,153,0.4);color:#f472b6;}
+
+/* CONTACT SECTION */
+.contact-section{text-align:center;}
+.contact-section .section-title{margin-bottom:16px;}
+.contact-section .section-subtitle{margin:0 auto 40px;}
+.contact-cards{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:60px;}
+.contact-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:20px 28px;display:flex;align-items:center;gap:12px;text-decoration:none;transition:border-color .2s, all 0.25s ease;}
+.contact-card:hover{border-color:rgba(236,72,153,0.3);transform:translateY(-2px);background:rgba(236,72,153,0.12);}
+.contact-card .cc-icon{width:36px;height:36px;border-radius:10px;background:rgba(236,72,153,0.1);display:flex;align-items:center;justify-content:center;font-size:14px;}
+.contact-card span{font-size:14px;color:#d4d4d8;font-weight:500;}
+.closing{text-align:center;padding:60px 0;border-top:1px solid rgba(255,255,255,0.04);margin-top:60px;}
+.closing p{font-size:13px;color:#3f3f46;}
+footer{padding:40px 48px;text-align:center;font-size:12px;color:#27272a;border-top:1px solid rgba(255,255,255,0.03);}
+
+/* BUBBLE BACKGROUND */
+.bubbles-container{position:fixed;top:0;left:0;width:100%;height:100%;overflow:hidden;z-index:0;pointer-events:none;}
+.bubble{position:absolute;bottom:-100px;background:radial-gradient(circle at 30% 30%, rgba(236,72,153,0.3), rgba(139,92,246,0.1));border-radius:50%;opacity:0.4;animation:floatUp linear infinite;backdrop-filter:blur(2px);}
+@keyframes floatUp{0%{transform:translateY(0) scale(1);opacity:0.4;}100%{transform:translateY(-120vh) scale(1.2);opacity:0;}}
+.bubble:nth-child(odd){background:radial-gradient(circle at 30% 30%, rgba(236,72,153,0.35), rgba(236,72,153,0.05));}
+.bubble:nth-child(even){background:radial-gradient(circle at 30% 30%, rgba(139,92,246,0.35), rgba(139,92,246,0.05));}
+
+/* SCROLL REVEAL */
+.scroll-reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s cubic-bezier(0.2,0.9,0.4,1.1), transform 0.7s cubic-bezier(0.2,0.9,0.4,1.1);}
+.scroll-reveal.visible{opacity:1;transform:translateY(0);}
+section.scroll-reveal:nth-of-type(1){transition-delay:0.05s;}
+section.scroll-reveal:nth-of-type(2){transition-delay:0.1s;}
+section.scroll-reveal:nth-of-type(3){transition-delay:0.15s;}
+section.scroll-reveal:nth-of-type(4){transition-delay:0.2s;}
+section.scroll-reveal:nth-of-type(5){transition-delay:0.25s;}
+section.scroll-reveal:nth-of-type(6){transition-delay:0.3s;}
+section.scroll-reveal:nth-of-type(7){transition-delay:0.35s;}
+.about-card.scroll-reveal:nth-of-type(1){transition-delay:0.05s;}
+.about-card.scroll-reveal:nth-of-type(2){transition-delay:0.1s;}
+.about-card.scroll-reveal:nth-of-type(3){transition-delay:0.15s;}
+.about-card.scroll-reveal:nth-of-type(4){transition-delay:0.2s;}
+.cg-box.scroll-reveal:nth-of-type(1){transition-delay:0.05s;}
+.cg-box.scroll-reveal:nth-of-type(2){transition-delay:0.1s;}
+.testi-card.scroll-reveal:nth-of-type(1){transition-delay:0.05s;}
+.testi-card.scroll-reveal:nth-of-type(2){transition-delay:0.1s;}
+.testi-card.scroll-reveal:nth-of-type(3){transition-delay:0.15s;}
+.testi-card.scroll-reveal:nth-of-type(4){transition-delay:0.2s;}
+.testi-card.scroll-reveal:nth-of-type(5){transition-delay:0.25s;}
+.testi-card.scroll-reveal:nth-of-type(6){transition-delay:0.3s;}
+.testi-card.scroll-reveal:nth-of-type(7){transition-delay:0.35s;}
+
+/* SHIMMER EFFECT */
+.highlight-thumb,.sw-thumb-img,.other-placeholder,.video-placeholder{position:relative;overflow:hidden;}
+.highlight-thumb::after,.sw-thumb-img::after,.other-placeholder::after,.video-placeholder::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);transition:left 0.6s ease;}
+.highlight-card:hover .highlight-thumb::after,.sw-thumb-card:hover .sw-thumb-img::after,.other-card:hover .other-placeholder::after,.video-card:hover .video-placeholder::after{left:100%;}
+
+/* CUSTOM SCROLLBAR */
+::-webkit-scrollbar{width:8px;height:8px;}
+::-webkit-scrollbar-track{background:#1a1a1a;border-radius:10px;}
+::-webkit-scrollbar-thumb{background:linear-gradient(135deg,#ec4899,#a78bfa);border-radius:10px;}
+::-webkit-scrollbar-thumb:hover{background:linear-gradient(135deg,#f472b6,#c4b5fd);}
+
+/* MODAL */
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);z-index:10000;justify-content:center;align-items:center;opacity:0;transition:opacity 0.3s ease;}
+.modal.show{display:flex;opacity:1;}
+.modal-content{background:linear-gradient(135deg,#0d0a1a,#1a0f1a);border:1px solid rgba(236,72,153,0.3);border-radius:24px;max-width:900px;width:90%;max-height:85vh;overflow-y:auto;position:relative;animation:modalFadeIn 0.4s cubic-bezier(0.16,1,0.3,1);box-shadow:0 25px 50px -12px rgba(0,0,0,0.5);}
+@keyframes modalFadeIn{from{opacity:0;transform:scale(0.95) translateY(20px);}to{opacity:1;transform:scale(1) translateY(0);}}
+.modal-close{position:absolute;top:20px;right:24px;font-size:28px;color:#a1a1aa;cursor:pointer;transition:all 0.2s ease;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,0.05);z-index:10;}
+.modal-close:hover{color:#ec4899;background:rgba(236,72,153,0.15);transform:rotate(90deg);}
+.modal-body{padding:32px;}
+.modal-title{font-size:28px;font-weight:800;color:#fff;margin-bottom:8px;}
+.modal-category{display:inline-block;font-size:12px;color:#ec4899;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;}
+.modal-description{font-size:15px;color:#a1a1aa;line-height:1.7;margin-bottom:24px;}
+.modal-long-description{background:rgba(236,72,153,0.05);border-left:3px solid #ec4899;padding:16px;margin:16px 0;border-radius:12px;font-size:13px;color:#a1a1aa;line-height:1.7;}
+.modal-tech{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px;}
+.modal-tech span{background:rgba(236,72,153,0.1);border:1px solid rgba(236,72,153,0.2);padding:6px 14px;border-radius:30px;font-size:12px;color:#f472b6;}
+.modal-links{display:flex;gap:16px;flex-wrap:wrap;}
+.modal-link{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);padding:10px 24px;border-radius:40px;color:#fff;text-decoration:none;font-size:14px;font-weight:500;transition:all 0.3s ease;}
+.modal-link:hover{background:rgba(236,72,153,0.2);border-color:rgba(236,72,153,0.4);transform:translateY(-2px);}
+.modal-results{background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.2);border-radius:12px;padding:12px 16px;margin:16px 0;font-size:13px;color:#34d399;}
+.modal-content-grid{display:flex;gap:16px;overflow-x:auto;overflow-y:hidden;padding:8px 4px 16px 4px;margin:20px 0;scroll-snap-type:x mandatory;}
+.modal-content-grid::-webkit-scrollbar{height:6px;}
+.modal-content-grid::-webkit-scrollbar-track{background:rgba(255,255,255,0.05);border-radius:10px;}
+.modal-content-grid::-webkit-scrollbar-thumb{background:#ec4899;border-radius:10px;}
+.modal-content-item{flex:0 0 180px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:16px;overflow:hidden;transition:all 0.3s ease;cursor:pointer;scroll-snap-align:start;}
+.modal-content-item:hover{transform:translateY(-4px);border-color:rgba(236,72,153,0.3);}
+.modal-content-img{position:relative;width:100%;aspect-ratio:4/5;overflow:hidden;background:linear-gradient(135deg,rgba(236,72,153,0.1),rgba(139,92,246,0.1));}
+.modal-content-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease;}
+.modal-content-item:hover .modal-content-img img{transform:scale(1.05);}
+.modal-content-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:40px;height:40px;background:rgba(0,0,0,0.7);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:16px;opacity:0;transition:opacity 0.3s ease;pointer-events:none;}
+.modal-content-item:hover .modal-content-play{opacity:1;}
+.modal-content-caption{padding:10px;text-align:center;}
+.modal-content-caption .caption-title{font-size:11px;color:#d4d4d8;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.modal-content-caption .caption-views{font-size:10px;color:#ec4899;}
+
+/* RESPONSIVE */
+@media (max-width:900px){
+    section{padding:80px 24px;}
+    .section-title{font-size:30px;}
+    .hero-name{font-size:42px;}
+    .about-grid,.cg-grid,.ak-dual-header{grid-template-columns:1fr;}
+    .impact-row{grid-template-columns:repeat(2,1fr);}
+    .pillar-grid,.highlight-grid,.client-logo-grid,.catalog-grid,.sw-thumb-grid{grid-template-columns:repeat(2,1fr);}
+    .channel-grid-3,.wf-result-stats,.prod-stats{grid-template-columns:1fr;}
+    .wf-steps{flex-direction:column;gap:0;}
+    .wf-arrow{transform:rotate(90deg);padding:4px 0;}
+    .ct-grid,.testi-grid,.video-grid{grid-template-columns:1fr;}
+    .testi-card.full-width{grid-column:auto;}
+    .wording-grid{grid-template-columns:1fr;}
+    .prog-steps{flex-direction:column;gap:12px;}
+    .prog-connector{transform:rotate(90deg);padding:0;}
+    .eco-flow{justify-content:center;}
+    nav .nav-links{display:none;}
+    .hero-new{padding:120px 24px 80px;}
+    .hero-new-container{grid-template-columns:1fr;gap:40px;text-align:center;}
+    .hero-new-content{align-items:center;}
+    .hero-new-badge{margin:0 auto;}
+    .hero-new-quote{text-align:left;}
+    .hero-new-stats{justify-content:center;}
+    .stat-new{text-align:center;}
+    .hero-new-name{font-size:36px;}
+    .projects-grid{grid-template-columns:1fr;gap:20px;}
+    .project-title{font-size:16px;}
+    .modal-body{padding:24px;}
+    .modal-title{font-size:22px;}
+    .modal-img{height:200px;}
+    .modal-content-item{flex:0 0 150px;}
+    .reels-grid-2layer{grid-template-columns:repeat(2,1fr);gap:12px;}
+}
+@media (max-width:500px){
+    .hero-name{font-size:32px;padding:0 16px;}
+    .reels-grid-2layer{grid-template-columns:1fr;}
+}
+@media (max-width:768px){
+    .hero-name{font-size:42px;padding:0 20px;}
+    .modal-media img{width:100%;}
+}
+/* BATAS CSS KELAR */
+</style>
+</head>
+<body>
+<div class="loader-overlay" id="loader">
+    <div class="loader-logo">
+        F<span class="dot-pink">.</span>A<span class="dot-pink">.</span>A<span class="dot-pink"></span>
+    </div>
+    <div class="progress-track">
+        <div class="progress-fill"></div>
+    </div>
+    <div class="progress-text" id="progressText">0%</div>
+</div>
+<div class="bubbles-container">
+    <div class="bubble" style="width: 80px; height: 80px; left: 5%; animation-duration: 12s; animation-delay: 0s;"></div>
+    <div class="bubble" style="width: 120px; height: 120px; left: 15%; animation-duration: 15s; animation-delay: 2s;"></div>
+    <div class="bubble" style="width: 50px; height: 50px; left: 25%; animation-duration: 10s; animation-delay: 1s;"></div>
+    <div class="bubble" style="width: 90px; height: 90px; left: 35%; animation-duration: 18s; animation-delay: 4s;"></div>
+    <div class="bubble" style="width: 60px; height: 60px; left: 45%; animation-duration: 14s; animation-delay: 0.5s;"></div>
+    <div class="bubble" style="width: 100px; height: 100px; left: 55%; animation-duration: 20s; animation-delay: 3s;"></div>
+    <div class="bubble" style="width: 70px; height: 70px; left: 65%; animation-duration: 11s; animation-delay: 2.5s;"></div>
+    <div class="bubble" style="width: 130px; height: 130px; left: 75%; animation-duration: 16s; animation-delay: 1.5s;"></div>
+    <div class="bubble" style="width: 45px; height: 45px; left: 85%; animation-duration: 9s; animation-delay: 3.5s;"></div>
+    <div class="bubble" style="width: 110px; height: 110px; left: 95%; animation-duration: 22s; animation-delay: 0.8s;"></div>
+    
+    <!-- Layer kedua (lebih kecil, lebih lambat) -->
+    <div class="bubble" style="width: 40px; height: 40px; left: 8%; animation-duration: 25s; animation-delay: 5s;"></div>
+    <div class="bubble" style="width: 35px; height: 35px; left: 20%; animation-duration: 28s; animation-delay: 7s;"></div>
+    <div class="bubble" style="width: 55px; height: 55px; left: 40%; animation-duration: 23s; animation-delay: 6s;"></div>
+    <div class="bubble" style="width: 30px; height: 30px; left: 60%; animation-duration: 30s; animation-delay: 4.5s;"></div>
+    <div class="bubble" style="width: 65px; height: 65px; left: 80%; animation-duration: 26s; animation-delay: 8s;"></div>
+</div>
+<nav><div class="logo">F<span>.</span>A<span>.</span>A</div><div class="nav-links"><a href="#about">About Me</a><a href="#bluiestore">Bluiestore</a><a href="#bhakti">Bhakti Maitreya</a><a href="#antikode">Antikode</a><a href="#projects">Projects</a><a href="#contact">Contact</a></div></nav>
+
+<section class="hero"><div class="hero-badge"><span class="dot"></span> PORTFOLIO 2026 — Updated Version</div><div class="hero-name">Felicia Angelica Agatha</div><div class="hero-tagline">Hello! Welcome to my portofolio.</div><a href="#hero-new" class="hero-cta">Take a look ↓</a><div class="hero-scroll"><span>SCROLL</span><div class="arrow"></div></div></section>
+
+<section id="hero-new" class="hero-new">
+    <div class="hero-new-container">
+        <div class="hero-new-content">
+            <div class="hero-new-badge">
+                <span class="dot"></span> PORTFOLIO 2026 — Updated Version
+            </div>
+            <h1 class="hero-new-name">Felicia Angelica Agatha</h1>
+            <p class="hero-new-description">
+                Hello! I'm Felicia. I focus on <strong>content execution & social media</strong> coordination while keeping teams aligned, workflows clear, and brand messaging consistent. With experience across agency and freelance projects, I've contributed to content for various industries.
+            </p>
+            <div class="hero-new-quote">
+                "Let's create work that's remembered together! :D"
+            </div>
+            <div class="hero-new-buttons">
+                <a href="#" class="btn-cv-new">📄 Download CV</a>
+                <a href="#projects" class="btn-projects-new">✨ View Projects</a>
+            </div>
+            <div class="hero-new-stats">
+                <div class="stat-new">
+                    <div class="stat-new-number">40+</div>
+                    <div class="stat-new-label">Brands Served</div>
+                </div>
+                <div class="stat-new">
+                    <div class="stat-new-number">2+</div>
+                    <div class="stat-new-label">Years Experience</div>
+                </div>
+                <div class="stat-new">
+                    <div class="stat-new-number">200+</div>
+                    <div class="stat-new-label">Content Created</div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-new-photo">
+            <img src="https://i.postimg.cc/05CLLs8T/image.png" alt="Felicia Angelica Agatha" class="profile-new-img">
+        </div>
+    </div>
+</section>
+<section id="about"><div class="section-label">About Me</div><div class="section-title">Background</div>
+<div class="about-grid">
+    <div class="about-card">
+        <h3>📋 Personal Information</h3>
+        <div class="info-row"><span class="label">Full Name</span><span class="value">Felicia Angelica Agatha</span></div>
+        <div class="info-row"><span class="label">Date of Birth</span><span class="value">July 14, 2004 — Indonesia</span></div>
+        <div class="info-row"><span class="label">Degree</span><span class="value">S.I.Kom — GPA 3.82</span></div>
+        <div class="info-row"><span class="label">Language</span><span class="value">Indonesia (Native) · English (Intermediate)</span></div>
+    </div>
+    <div class="about-card">
+        <h3>🎓 Education</h3>
+        <div class="info-row"><span class="label">2019 — 2022</span><span class="value">SMA Sinar Dharma · Social Sciences</span></div>
+        <div class="info-row"><span class="label">2022 — 2026</span><span class="value">Universitas Tarumanagara · Communication</span></div>
+    </div>
+    <div class="about-card">
+        <h3>⚡ Top Skills</h3>
+        <div class="skill-tags">
+            <span class="skill-tag">Leadership & Team Coordination</span>
+            <span class="skill-tag">Cross-functional Collaboration</span>
+            <span class="skill-tag">Attention to Detail</span>
+            <span class="skill-tag">Proactive & Process-oriented</span>
+            <span class="skill-tag">Time Management & Flexibility</span>
+        </div>
+    </div>
+    <div class="about-card">
+        <h3>🏆 Achievements & Organizations</h3>
+        <div class="info-row"><span class="label">2019 — 2020</span><span class="value">Vice President of Sinar Dharma High School's Student Council</span></div>
+        <div class="info-row"><span class="label">2023 — 2024</span><span class="value">Executive Board of Dharmayana SAU Tarumanagara University</span></div>
+        <div class="info-row"><span class="label">2023 — 2024</span><span class="value">Executive Board of Citra Pesona SAU Tarumanagara University</span></div>
+        <div class="info-row"><span class="label">2024 — 2025</span><span class="value">General Chairwoman of Citra Pesona SAU Tarumanagara University</span></div>
+    </div>
+    <div class="about-card software-tools-card">
+        <h3>🛠️ Software & Tools</h3>
+        <div class="sw-section">
+            <div class="sw-category">
+                <div class="sw-cat-label">Editing</div>
+                <div class="sw-items">
+                    <div class="sw-tool"><div class="sw-tool-icon" style="background:rgba(0,210,255,0.1);"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#00D2FF" stroke-width="1.5"/><path d="M8 12l3 3 5-6" stroke="#00D2FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Canva</span></div>
+                    <div class="sw-tool"><div class="sw-tool-icon" style="background:rgba(255,255,255,0.05);"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="#a1a1aa" stroke-width="1.5"/><path d="M10 8l6 4-6 4V8z" fill="#a1a1aa"/></svg></div><span>CapCut</span></div>
+                    <div class="sw-tool"><div class="sw-tool-icon" style="background:rgba(242,78,30,0.08);"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5h4l3 9h-4l3 5h4l3-5h-4l3-9h4" stroke="#F24E1E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 21h18" stroke="#A259FF" stroke-width="1.5" stroke-linecap="round"/></svg></div><span>Figma</span></div>
+                </div>
+            </div>
+            <div class="sw-category">
+                <div class="sw-cat-label">Collaboration</div>
+                <div class="sw-items">
+                    <div class="sw-tool"><div class="sw-tool-icon" style="background:rgba(51,112,255,0.1);"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h10" stroke="#3370FF" stroke-width="1.5" stroke-linecap="round"/><rect x="2" y="3" width="20" height="18" rx="3" stroke="#3370FF" stroke-width="1.5"/></svg></div><span>Lark</span></div>
+                    <div class="sw-tool"><div class="sw-tool-icon" style="background:rgba(82,82,227,0.1);"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="9" height="9" rx="2" stroke="#5252E3" stroke-width="1.5"/><rect x="13" y="2" width="9" height="9" rx="2" stroke="#5252E3" stroke-width="1.5"/><rect x="2" y="13" width="9" height="9" rx="2" stroke="#5252E3" stroke-width="1.5"/><rect x="13" y="13" width="9" height="9" rx="2" stroke="#5252E3" stroke-width="1.5"/></svg></div><span>MS Teams</span></div>
+                    <div class="sw-tool"><div class="sw-tool-icon" style="background:rgba(255,107,53,0.1);"><svg viewBox="0 0 24 24" fill="none"><path d="M11 3L4 14h7l-1 7 7-11h-7l1-7z" stroke="#FF6B35" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>ClickUp</span></div>
+                </div>
+            </div>
+            <div class="sw-category">
+                <div class="sw-cat-label">Work Space</div>
+                <div class="sw-items">
+                    <div class="sw-tool"><div class="sw-tool-icon" style="background:rgba(66,133,244,0.1);"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#4285F4" stroke-width="1.5" stroke-linejoin="round"/><path d="M2 17l10 5 10-5" stroke="#4285F4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12l10 5 10-5" stroke="#4285F4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Google Workspace</span></div>
+                    <div class="sw-tool"><div class="sw-tool-icon" style="background:rgba(255,105,0,0.1);"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="8" rx="1" stroke="#FF6900" stroke-width="1.5"/><rect x="13" y="3" width="8" height="8" rx="1" stroke="#FF6900" stroke-width="1.5"/><rect x="3" y="13" width="8" height="8" rx="1" stroke="#FF6900" stroke-width="1.5"/><rect x="13" y="13" width="8" height="8" rx="1" stroke="#FF6900" stroke-width="1.5"/></svg></div><span>Microsoft 365</span></div>
+                </div>
+            </div>
+            <div class="sw-category">
+                <div class="sw-cat-label">Reporting</div>
+                <div class="sw-items">
+                    <div class="sw-tool"><div class="sw-tool-icon" style="background:rgba(251,188,4,0.1);"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="12" width="4" height="9" rx="1" fill="#FBBC04" opacity="0.7"/><rect x="10" y="7" width="4" height="14" rx="1" fill="#FBBC04" opacity="0.7"/><rect x="17" y="3" width="4" height="18" rx="1" fill="#FBBC04" opacity="0.7"/></svg></div><span>GA4</span></div>
+                    <div class="sw-tool"><div class="sw-tool-icon" style="background:rgba(24,119,242,0.1);"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#1877F2" stroke-width="1.5"/><path d="M12 3a9 9 0 016.36 2.64" stroke="#1877F2" stroke-width="1.5" stroke-linecap="round"/><path d="M15 9h-3V6.5a1.5 1.5 0 013 0V9z" stroke="#1877F2" stroke-width="1.5"/><path d="M8 12h8" stroke="#1877F2" stroke-width="1.5" stroke-linecap="round"/></svg></div><span>Meta Business Suite</span></div>
+                </div>
+            </div>
+            <div class="sw-category">
+                <div class="sw-cat-label">Web Development</div>
+                <div class="sw-items">
+                    <div class="sw-tool"><div class="sw-tool-icon" style="background:rgba(20,115,210,0.1);"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#1473D2" stroke-width="1.5"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10" stroke="#1473D2" stroke-width="1.5"/><path d="M8 14s1.5 2 4 2 4-2 4-2" stroke="#1473D2" stroke-width="1.5" stroke-linecap="round"/></svg></div><span>WordPress</span></div>
+                    <div class="sw-tool"><div class="sw-tool-icon" style="background:rgba(255,99,132,0.1);"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#FF6384" stroke-width="1.5"/><path d="M2 17l10 5 10-5" stroke="#FF6384" stroke-width="1.5"/><path d="M2 12l10 5 10-5" stroke="#FF6384" stroke-width="1.5"/></svg></div><span>HTML5</span></div>
+                    <div class="sw-tool"><div class="sw-tool-icon" style="background:rgba(0,210,255,0.1);"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5h14v14H5z" stroke="#00D2FF" stroke-width="1.5"/><path d="M9 8l3 3-3 3" stroke="#00D2FF" stroke-width="1.5"/><path d="M15 16l-3-3 3-3" stroke="#00D2FF" stroke-width="1.5"/></svg></div><span>CSS3</span></div>
+                    <div class="sw-tool"><div class="sw-tool-icon" style="background:rgba(247,223,30,0.1);"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" stroke="#F7DF1E" stroke-width="1.5"/><path d="M8 10h8M12 10v4" stroke="#F7DF1E" stroke-width="1.5"/></svg></div><span>JavaScript</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+<section style="padding-top:20px;">
+    <div class="help-box">
+        <p>
+            <span class="pink">See how my brain works:</span><br><br>
+            Adaptable and flexible person who loves trying new things and learning as I go. My creative brain keeps me curious, but it also distracts me (a lot). Ideas jump around. Experiments happen. Eventually, I let things get messy because that's just how creativity works for me. <span class="pink">But when it's time to execute?</span> That's the part for me to bring structure to the chaos. When a problem shows up, my solution mode turns on. I'm also deeply process-oriented. I believe in the journey, even when the outcome is uncertain. I want everyone to feel like none of the experience was a waste.<br><br>
+        </p>
+    </div>
+</section>
+
+<!-- ═══ BLUIESTORE (RAPIH) ═══ -->
+<section id="bluiestore">
+  <div class="section-label">Experience</div>
+
+  <div class="case-header">
+    <div class="case-header-text">
+      <h2>FREELANCE WRITER</h2>
+      <p>@bluiestore on Telegram</p>
+      <div class="case-period">January 2021 — May 2023</div>
+    </div>
+  </div>
+
+  <div class="cg-grid">
+    <div class="cg-box">
+      <span class="cg-tag challenge">Challenge</span>
+      <p>Aesthetic and roleplay communities on Telegram have a unique need: profile identities that feel rare, poetic, and visually distinct. But most users struggle to craft rare, poetic language that matches their desired persona (dark, fantasy, ethereal, soft, etc.)</p>
+    </div>
+    <div class="cg-box">
+      <span class="cg-tag goal">Goal</span>
+      <p>To transform abstract themes into stylized biographies and descriptions by making each client's profile stand out as a natural extension of their digital persona. Every piece is crafted to strengthen their personal branding with unique characteristics, ensuring no two identities feel the same.</p>
+    </div>
+  </div>
+
+  <div class="blue-stats">
+    <div class="blue-stat">
+      <div class="num">200+</div>
+      <div class="met">Clients Served</div>
+    </div>
+    <div class="blue-stat">
+      <div class="num">3 Mio</div>
+      <div class="met">IDR Total Revenue</div>
+    </div>
+    <div class="blue-stat">
+      <div class="num">+1K</div>
+      <div class="met">Telegram Channel Subscribers</div>
+    </div>
+  </div>
+
+  <div class="approach-box">
+    <h3>Unique Writing Approach</h3>
+    <p style="font-size:13px;color:#71717a;margin-bottom:16px;line-height:1.7;">My niche is crafting unique digital identities for aesthetic and roleplay communities. This is not classic writing. It does not aim for universal readability. Instead, it prioritizes vibe, emotion, and persona over literal meaning through <strong style="color:#818cf8;">aesthetic language design</strong> using old-poetry expressions, rare and unique words, thesaurus-rich vocabulary, and even Oxford English Dictionary entries to create a poetic, immersive atmosphere. <strong style="color:#818cf8;">For outsiders, this style might feel abstract. But for the intended persona, it delivers branding.</strong></p>
+    <div class="approach-step">
+      <div class="as-num">1</div>
+      <div class="as-text">
+        <h4>Listen</h4>
+        <p>"What vibe do you want people to get when they found your account?"</p>
+      </div>
+    </div>
+    <div class="approach-step">
+      <div class="as-num">2</div>
+      <div class="as-text">
+        <h4>Translate</h4>
+        <p>Transform keywords into rare, ethereal, and beautiful language that matches the vibe.</p>
+      </div>
+    </div>
+    <div class="approach-step">
+      <div class="as-num">3</div>
+      <div class="as-text">
+        <h4>Deliver</h4>
+        <p>Unique biography that describe and feels like them. Not just words, but feelings.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="before-after-box">
+    <div class="ba-label">Sample of Sentence</div>
+    <div class="ba-line">
+      <span class="ba-before">Instead of writing "I like rainy days and old books"</span>
+      <span class="ba-arrow">→</span>
+      <span class="ba-after">I write: collector of forgotten pages & the quiet between raindrops</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:14px;">
+    <div class="section-label" style="color:#818cf8;">Testimonials</div>
+    <div class="section-title" style="font-size:22px;margin-bottom:4px;">What They Said</div>
+  </div>
+<div class="testi-grid">
+  <div class="testi-card"><div class="tc-name">Anney</div><div class="tc-handle">@ilysmjavas</div><div class="tc-text">thankyou yaa kak! definitely will give 100/10 for the great service! kaka nya ramah & fastrespon banget ❤️❤️..... jadinya proses tfo nya cepatt :]] wordingnya juga kece hiks.... sebenernya tadi aku bingung mau pilih yang manaaaa SOALNYA AESTHETIC SEMUAA 😭😭😭😭 thankyou yaa kak! sukses terus untuk bisnis nyaa :3</div></div>
+  <div class="testi-card"><div class="tc-name">Hannah</div><div class="tc-handle">@taegguka</div><div class="tc-text">WHAT-?! aku pas buka ini shock banget. like how weh 😭😭☝🏻. ini wording yaaangg paaaling sesuai ekspetasi aku. your masterpiece kayaknya ga pernah gagal deh yaa kakak🧐. mana hasilnya rare banget pula ini maah 10007272728000/0. customers ga akan nyesel kayaaknya kalau jajan di kamu mana cepet banget walau ga request inrush? intinya, jajan di kamu no regret deh ♥️. perbanyak katalog bio nya juga yayayaya?! aku bakal stalk katalognya satu" sihhh ehehehe :3. sampe sekarang jujur aku kayaak masih speechless kenapa bisa buat sekece ini.</div></div>
+  <div class="testi-card"><div class="tc-name">Rue</div><div class="tc-handle">@i8882th</div><div class="tc-text">alright terimakasih, aku kasih 10000/10 yaa karna kakaknya bener-bener fast respon dan gercep, amanah pokoknya, ramahh jugaa. sekali lagi thank youu ♥️</div></div>
+  <div class="testi-card"><div class="tc-name">Nami</div><div class="tc-handle">@princessnyabjm</div><div class="tc-text">yeayy thank u so macc! tentu, i'll give u 10/10! alias infinity. fsr prosesnya sat set secepat kilat ☝🏻 ngga minta option tapi dikasih sksksksksk bagus semuaa lagiii jadi bingung pilih yang manaaa hehe, terima kasih banyak yaaa, sukses terusss, perfect intinya worth to try & buy! ♡</div></div>
+  <div class="testi-card full-width"><div class="tc-name">Mikio</div><div class="tc-handle">@colleis</div><div class="tc-text">KAAAK HALOOO, BOLEH BGT DONGG! BTW MBB YAA AKU BARU SELESAI TAKE A BATH NYA T__T mulai dari mana dulu yaaa??? ratee?? OKAAI, it's 36488292/10 guuysss I SWEAAR TO GODD KARNA WORDING NYA SELUCU ITUUUUUU, you have to trust mee for this :33 for the service.. engga ada yang mau di bahas lagi karena ini owner nya sangat sangat fast respond even tho i'm not a fast responding person u_u last but not least adalah proses pengerjaan nyaa.. CEPETBANGEET??? i didn't expect it would be this fast karena yaa.. ini FULL CHANNEL WORDING!!! tapi ternyata cepet bangett.. CAANTIK BGT LAGI SESUAI SAMA YG AKU MAUUU JCKSNDJDJS PUSING AKU... pokoknya untuk kritik dan saran atau apapun itu sama sekali engga ada karena ini semuaaanya udah bagus dan passss banget. and sukses terusss yaaa therefore your wording juga makin banyaaak hehehe omg omg ngga boongg aku jatuh cintaa :333 lagi lagi makasihh yaaa, resultt nyaa sesuai requesdttt 😍😍</div></div>
+  <div class="testi-card"><div class="tc-name">Lycia</div><div class="tc-handle">@nLycia</div><div class="tc-text">rating for this store is ♾️/100 coz the service here is excellent. the prices are very cheap and guaranteed trusted ♥️.</div></div>
+  <div class="testi-card"><div class="tc-name">Maurine</div><div class="tc-handle">@mrythoIogy</div><div class="tc-text">terimakasih kakkk, boleh banget atuh. 100/10 buat kakaknya karna respon nya cepet banget padahal udah malem, terus ramah banget kakaknya. prosesnya juga sat set banget jadi ngga nunggu lamaa, wordingnya juga baguss banget & classy. sekali lagi makasih yaa kakkk</div></div>
+</div>
+<div style="margin-bottom:14px;">
+    <div class="section-label" style="color:#818cf8;">Output</div>
+    <div class="section-title" style="font-size:22px;margin-bottom:4px;">Wording Samples</div>
+</div>
+<div class="wording-grid-fix" style="margin-bottom: 36px;">
+    
+    <!-- 1. Biography Premium -->
+    <div class="wording-card">
+        <div style="background: linear-gradient(135deg, rgba(236,72,153,0.15), rgba(139,92,246,0.15)); padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <div style="font-size: 11px; color: #ec4899; font-weight: 600;">Premium Biography</div>
+            <div style="font-size: 14px; font-weight: 600; color: #e4e4e7;">A mystical forest where ancient temples twist with enchanted vines, and holiness meets heaven in a millennium of macramé.</div>
+            <div style="font-size: 10px; color: #a78bfa; margin-top: 4px;">Vibes: Fantasy, Ethereal, Whimsical</div>
+        </div>
+        <div style="padding: 20px;">
+            <div style="font-size: 10px; color: #f472b6; margin-bottom: 8px; letter-spacing: 0.5px;">⚠ NOT FOR USE/COPY</div>
+            <div style="font-size: 12px; color: #a1a1aa; line-height: 1.7; font-style: italic;">
+                "tangledwood forest o' enhancing temple twine for < channel.t.me > 'millennium of macramé!' holiness it - behold mirth embraces heavenwards."
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Biography Non Premium -->
+    <div class="wording-card">
+        <div style="background: rgba(139,92,246,0.1); padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <div style="font-size: 11px; color: #a78bfa; font-weight: 600;">Non-Premium Biography</div>
+            <div style="font-size: 14px; font-weight: 600; color: #e4e4e7;">An angelic presence floating above darkness, expressing pure admiration with a soft and tender heart.</div>
+            <div style="font-size: 10px; color: #a78bfa; margin-top: 4px;">Vibes: Angelic, Majestic, Soft</div>
+        </div>
+        <div style="padding: 20px;">
+            <div style="font-size: 10px; color: #f472b6; margin-bottom: 8px; letter-spacing: 0.5px;">⚠ NOT FOR USE/COPY</div>
+            <div style="font-size: 12px; color: #a1a1aa; line-height: 1.7; font-style: italic;">
+                "✿ majestical seraphic o'erhanging pestilent express a admireness @channel heart .. ♡"
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Description Channel (dipendekkan dulu) -->
+    <div class="wording-card">
+        <div style="background: rgba(139,92,246,0.1); padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <div style="font-size: 11px; color: #a78bfa; font-weight: 600;">Channel Description</div>
+            <div style="font-size: 14px; font-weight: 600; color: #e4e4e7;">A royal servant emissary welcoming guests with grand gratitude, proper manner, and a helping hand for every lost soul.</div>
+            <div style="font-size: 10px; color: #a78bfa; margin-top: 4px;">Vibes: Royal, Mystical, Ethereal</div>
+        </div>
+        <div style="padding: 20px;">
+            <div style="font-size: 10px; color: #f472b6; margin-bottom: 8px; letter-spacing: 0.5px;">⚠ NOT FOR USE/COPY</div>
+            <div style="font-size: 12px; color: #a1a1aa; line-height: 1.7; font-style: italic;">
+          { Myrth ; IX } Folk Alluring – Appears.
+          <br><br>
+𔐼‌ Fathom my grandest greets! Essential moment of realizing the abundance of smooth act. Foregoing, such a gratitude for you to pay a visit at my page. This is a servant emissary that shall certainly used to help— Prescribe to tell inquiry proper and mannerly. As well-turned as there's no miscomprehension on both fellow. Thank you for reach me out, I'll bear a hand the grateful I can. Much concern, dear charmed souls.
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Main Pinned Channel 1 -->
+    <div class="wording-card">
+        <div style="background: rgba(139,92,246,0.1); padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <div style="font-size: 11px; color: #a78bfa;">Pinned Channel</div>
+            <div style="font-size: 14px; font-weight: 600; color: #e4e4e7;">A queen casts a spell from her fairy tale world, showering diamonds and melodies that captivate every soul who gazes upon her.</div>
+            <div style="font-size: 10px; color: #a78bfa; margin-top: 4px;">Vibes: Royal, Fairy Tale, Elegant</div>
+        </div>
+        <div style="padding: 20px;">
+            <div style="font-size: 10px; color: #f472b6; margin-bottom: 8px; letter-spacing: 0.5px;">⚠ NOT FOR USE/COPY</div>
+            <div style="font-size: 12px; color: #a1a1aa; line-height: 1.7; font-style: italic;">
+            ㅤㅤ≪ °❈° ≫≪ °❈° ≫≪ °❈° ≫≪ °❈° ≫ㅤ
+            <br><br>
+            A thaumaturgy occurs when a queen casts a spelleth from her fairy tale world at a specific hour. It all boils down to the soul - relaxing melodic enrichment. Someone did notice her showering a ray of dazzling diamonds on the Callistephus Chinenis. The Callistephus flower symbolizes the courage of a love that can turn into a glimmer of hope from the heart's conviction.
+            <br><br>
+            Her external complement is graceful, beauteous, and magnificent. Anyone who looks at her will be swept along by her grace. Dropped by a pair of eyeballs from the face of an angel who captivated the flying souls. Pure gems engraved from beautiful and sparkling diamond crystals glowed brightly all around.
+            <br><br>
+            The white harp accompanied the chanting of the melody while shaking all the hearts of the singing souls. There came from heaven, the Stunning Beauty named <FILL YOUR NAME>. who was spreading joy that she had. Her melodious voice can be analogized as the black and white key frame of a piano which is very soothing to the listeners. Smooth white skin can be likened to tofu which is as soft as silk. Her harmonious eyes greeted thousands of hearts without any effort of affirmation and coercion, her presence made people blush at the sight of her majestic face.
+            <br><br>
+            ㅤㅤ≪ °❈° ≫≪ °❈° ≫≪ °❈° ≫≪ °❈° ≫
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. Main Pinned Channel 2 -->
+    <div class="wording-card">
+        <div style="background: rgba(139,92,246,0.1); padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <div style="font-size: 11px; color: #a78bfa;">Pinned Channel</div>
+            <div style="font-size: 14px; font-weight: 600; color: #e4e4e7;">A mysterious deity whose dangerous charm and forbidden beauty leave everyone captivated, torn between desire and distance.</div>
+            <div style="font-size: 10px; color: #a78bfa; margin-top: 4px;">Vibes: Sensual, Dark, Mysterious</div>
+        </div>
+        <div style="padding: 20px;">
+            <div style="font-size: 10px; color: #f472b6; margin-bottom: 8px; letter-spacing: 0.5px;">⚠ NOT FOR USE/COPY</div>
+            <div style="font-size: 12px; color: #a1a1aa; line-height: 1.7; font-style: italic;">
+            Conjunctions are known for delivering passion and excitement into relationships. Holdsworth the power to manifest a new love interest into life or to spice up a long-term relationship, essentially flirting as they move toward making the energy intimate, sexy, and ripe for connection. Unfold over the next few weeks, that vibes will shift from relationship planning and plotting to a lighter-hearted exploration of pleasure.
+            <br><br>
+            Eternal beauteous plunges into the air in a west-coast hut locally in the middle of a vast jungle. Treasury for the perfect majestically kingdom accompanied with the rhythmic strains of a violin. Melodies softening the ears guided by the wilderness nature. Pertaining to a large bosomed mistresses. Double roblet from her dodrantal qualities positively isangelous. Enthusiastic positivism willingness are of others have glamorous meaning in any beautification.
+            <br><br>
+            She looks like a deity — the perfect balance of danger and charm, same time fascinating and inaccessible, distant because of her demonstrated flawlessness. Possessing such strength of character that she was dismaying utterly attractive in enticing and forbidden way.
+            <br><br>
+            Iridescent sensuous aurora gleam upon the silhouette of endearing milady with the scent of delicate flowers, exquisite voices as the sounds of wonder. Gazes centered on her were incessantly directed, full of warmth like an auroral phoebus, be amazed at major sovereign. Triple-threat known for her plethora everlasting charm. Enthralling beholders upon her furrow of music that allure. An electrona goddess wandering over heaven finally glistening with passion and burning ineffable memorise.
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. Main Pinned Channel 3 -->
+    <div class="wording-card">
+        <div style="background: rgba(139,92,246,0.1); padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <div style="font-size: 11px; color: #a78bfa;">Pinned Channel</div>
+            <div style="font-size: 14px; font-weight: 600; color: #e4e4e7;">An artistic soul wandering through serpentine academia and enchanted forests, where beauty is painted with every brush stroke and her presence never fades beneath Athena's throne.</div>
+            <div style="font-size: 10px; color: #a78bfa; margin-top: 4px;">Vibes: Artistic, Poetic, Mystical</div>
+        </div>
+        <div style="padding: 20px;">
+            <div style="font-size: 10px; color: #f472b6; margin-bottom: 8px; letter-spacing: 0.5px;">⚠ NOT FOR USE/COPY</div>
+            <div style="font-size: 12px; color: #a1a1aa; line-height: 1.7; font-style: italic;">
+            ⧾   ˚ … ✦ scintillating essences serenity howled calmly beneath athena's throne, never least blurring her presence. idle on thee serpentine wooded – academia, where o' mistral swishes daintily through her adenoids. ogling at genuine beauteous canvas beseech ethological fallible would solitudeth her with freedom leisure to painted artistically in brushes pena 𓂃 ...
+            <br><br>
+                          chaptershed ; i .. resplendently
+                          o' flowing brownian sanguine
+                          fluid and conscious with nobility
+                          caught haughty in every
+                          memorandums. 
+            <br><br>
+            𑂅 .. wheeled conveying without considerable scheme of reprehension from personally passage alongside within thy words " 
+            <br><br>
+mademoiselle of goodness pyrenees alight embedded with density O! threw wanderer sceneryth " therefore, lady not nuisance about her surroundings beneath enchanters in enamor naturally lowkey { ☙••• (FILL YOUR USERNAME) } against dungeon, if thereby existences like indicating ladybug plus countdown from a cocoon goes through elongate development. the foresee create loopholes and ridiculously she exist! tightened alluring vibrancy finally turned into mirthful soul ; caricature with feathers that spread widely ; foregoing of abundance to achieve whole enchilada that needeth alter. enthrall shapes grip allotment a' nd tender ! effort smoothly prescribe inquiry well–turned. noth unbetrayal the symptoms become absolute shape grandest in admirableness.. ❈
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="sample-note">
+    <strong>Note: </strong>All wording samples are original work created based on each client's requests and personal themes. Unauthorized copying or public use is prohibited. © Felicia Angelica Agatha</div>
+</section>
+
+<div class="divider" style="max-width:1200px;margin:60px auto;"></div>
+
+<!-- ═══ BHAKTI MAITREYA (UNCHANGED) ═══ -->
+<section id="bhakti">
+  <div class="section-label">Experience</div>
+
+  <div class="case-header">
+    <div class="case-header-text">
+      <h2>SOCIAL MEDIA SPECIALIST</h2>
+      <p>@bhaktimaitreya on Instagram</p>
+      <div class="case-period">January 2024 — December 2025</div>
+    </div>
+  </div>
+
+  <div class="cg-grid">
+    <div class="cg-box">
+      <span class="cg-tag challenge">Challenge</span>
+      <p>Small Instagram account (&lt;200 followers) with limited reach and unclear content direction.</p>
+    </div>
+    <div class="cg-box">
+      <span class="cg-tag goal">Goal</span>
+      <p>Build a consistent content system, identify what actually resonates with the audience, and increase visibility through strategic experimentation.</p>
+    </div>
+  </div>
+
+  <div class="cg-box" style="margin-bottom: 36px;">
+    <span class="cg-tag role">My Role</span>
+    <p>I handled audience analysis, content pillars, brand consistency, and visual production (feed design + thumbnails + occasional video editing). Collaborated with a caption writer and video editor to make sure the tone, vibe, and visuals stayed consistent across everything.</p>
+  </div>
+
+  <div class="impact-row">
+    <div class="impact-card">
+      <div class="num">+437%</div>
+      <div class="met">Growth in Reach</div>
+    </div>
+    <div class="impact-card">
+      <div class="num">+99,8%</div>
+      <div class="met">Profile Visits</div>
+    </div>
+    <div class="impact-card">
+      <div class="num">4,03%</div>
+      <div class="met">Engagement Rate</div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:12px;">
+    <div class="section-label">Content Strategy</div>
+    <p style="font-size:13px;color:#71717a;margin-top:4px;">Content performance revealed four key audience interests. All best-performing contents hit minimal 3 out of 4 areas of interests. It feels real for them, so they engaged.</p>
+  </div>
+
+  <div class="pillar-grid">
+    <div class="pillar-item">
+      <span class="pi-emoji">🕉️</span>
+      <div class="pi-name">Buddhist</div>
+      <div class="pi-desc">Teachings & values</div>
+    </div>
+    <div class="pillar-item">
+      <span class="pi-emoji">🥬</span>
+      <div class="pi-name">Vegetarian</div>
+      <div class="pi-desc">Vegetarian lifestyle</div>
+    </div>
+    <div class="pillar-item">
+      <span class="pi-emoji">🧘</span>
+      <div class="pi-name">Life-Style</div>
+      <div class="pi-desc">Daily lifestyle</div>
+    </div>
+    <div class="pillar-item">
+      <span class="pi-emoji">📘</span>
+      <div class="pi-name">Education Activities</div>
+      <div class="pi-desc">Community education</div>
+    </div>
+  </div>
+
+  <div class="strategy-line">
+    <h3>Moment-Based UGC Strategy</h3>
+    <div class="strategy-flow">
+      <span class="sf-item">Real community moments</span>
+      <span class="sf-arrow">→</span>
+      <span class="sf-item">Relatable storytelling</span>
+      <span class="sf-arrow">→</span>
+      <span class="sf-item">Higher engagement</span>
+      <span class="sf-arrow">→</span>
+      <span class="sf-result">Organic collaboration</span>
+    </div>
+    <div class="tags-row">
+      <span class="mini-tag">Earned Media</span>
+      <span class="mini-tag">WoM Marketing</span>
+      <span class="mini-tag">Organic Collaboration</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:18px;">
+    <h3 style="font-size:15px;font-weight:600;margin-bottom:4px;">Highlighting 4 Top Performing Content</h3>
+    <p style="font-size:12px;color:#71717a;">FYI, 100% of these contents got organic collaboration.</p>
+  </div>
+
+<div class="sw-thumb-grid">
+    <!-- Top Reel #1 -->
+    <div class="sw-thumb-card">
+        <a href="https://www.instagram.com/reel/DIio6wOTRop/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" class="sw-thumb-link" target="_blank">
+            <div class="sw-thumb-img">
+                <img src="https://i.postimg.cc/9fpxrSPd/image.png" alt="Top Reel #1" class="sw-thumb-image">
+                <div class="sw-play-overlay">▶</div>
+            </div>
+        </a>
+        <div class="sw-thumb-caption">
+            <div class="tc-title">5.724 views</div>
+            <div class="tc-desc">Top performing reel #1</div>
+        </div>
+    </div>
+
+    <!-- Top Reel #2 -->
+    <div class="sw-thumb-card">
+        <a href="https://www.instagram.com/reel/DIp89rATJwq/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" class="sw-thumb-link" target="_blank">
+            <div class="sw-thumb-img">
+                <img src="https://i.postimg.cc/xdx46hXw/REELS-TEMPLATE-KONTEN-HARIAN.jpg" alt="Top Reel #2" class="sw-thumb-image">
+                <div class="sw-play-overlay">▶</div>
+            </div>
+        </a>
+        <div class="sw-thumb-caption">
+            <div class="tc-title">4.675 views</div>
+            <div class="tc-desc">Top performing reel #2</div>
+        </div>
+    </div>
+
+    <!-- Top Reel #3 -->
+    <div class="sw-thumb-card">
+        <a href="https://www.instagram.com/reel/DJJOXWlzvmd/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" class="sw-thumb-link" target="_blank">
+            <div class="sw-thumb-img">
+                <img src="https://i.postimg.cc/QMyfQ7PT/image.png" alt="Top Reel #3" class="sw-thumb-image">
+                <div class="sw-play-overlay">▶</div>
+            </div>
+        </a>
+        <div class="sw-thumb-caption">
+            <div class="tc-title">4.658 views</div>
+            <div class="tc-desc">Top performing reel #3</div>
+        </div>
+    </div>
+
+    <!-- Top Reel #4 -->
+    <div class="sw-thumb-card">
+        <a href="https://www.instagram.com/reel/DIN-UeDTIvc/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" class="sw-thumb-link" target="_blank">
+            <div class="sw-thumb-img">
+                <img src="https://i.postimg.cc/4yTbPQ1s/image.png" alt="Top Reel #4" class="sw-thumb-image">
+                <div class="sw-play-overlay">▶</div>
+            </div>
+        </a>
+        <div class="sw-thumb-caption">
+            <div class="tc-title">4.033 views</div>
+            <div class="tc-desc">Top performing reel #4</div>
+        </div>
+    </div>
+</div>
+
+  <div style="margin-top:48px;margin-bottom:18px;">
+    <h3 style="font-size:18px;font-weight:700;color:#e4e4e7;margin-bottom:4px;">Other Content Production</h3>
+    <p style="font-size:12px;color:#71717a;">Full content catalog produced during the management period.</p>
+  </div>
+
+  <div class="catalog-section">
+    <div class="catalog-label">Instagram Feeds</div>
+    <div class="sw-thumb-grid">
+        <div class="sw-thumb-card">
+            <a href="https://www.instagram.com/p/DAySA0Dz3ZF/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" class="sw-thumb-link" target="_blank">
+                <div class="sw-thumb-img" style="aspect-ratio: 1/1;">
+                    <img src="https://i.postimg.cc/SsPHx3q1/image.png" alt="Carousel 1" class="sw-thumb-image">
+                    <div class="sw-play-overlay">▶</div>
+                </div>
+            </a>
+            <div class="sw-thumb-caption">
+                <div class="tc-title">📝 [BM ON AIR] ✅ Halo, MaiTeens! 👋🏻 Tepat pada...</div>
+                <div class="tc-desc">Instagram Feeds</div>
+            </div>
+        </div>
+        <div class="sw-thumb-card">
+            <a href="https://www.instagram.com/p/C_pMFKgSmMT/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" class="sw-thumb-link" target="_blank">
+                <div class="sw-thumb-img" style="aspect-ratio: 1/1;">
+                    <img src="https://i.postimg.cc/ydhnwGxm/image.png" alt="Carousel 2" class="sw-thumb-image">
+                    <div class="sw-play-overlay">▶</div>
+                </div>
+            </a>
+            <div class="sw-thumb-caption">
+                <div class="tc-title">💃🏻 [BM ON AIR] x 草原青年团🕺🏻 Halo MaiTeens! 👋🏻...</div>
+                <div class="tc-desc">Instagram Carousel</div>
+            </div>
+        </div>
+        <div class="sw-thumb-card">
+            <a href="https://www.instagram.com/p/C8y03aTy4vN/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" class="sw-thumb-link" target="_blank">
+                <div class="sw-thumb-img" style="aspect-ratio: 1/1;">
+                    <img src="https://i.postimg.cc/4xh6D0Fh/image.png" alt="Carousel 3" class="sw-thumb-image">
+                    <div class="sw-play-overlay">▶</div>
+                </div>
+            </a>
+            <div class="sw-thumb-caption">
+                <div class="tc-title">☘️ [BM DAILY] ☘️ Halo MaiTeens! 👋🏻 Tebak siapa...</div>
+                <div class="tc-desc">Instagram Feeds</div>
+            </div>
+        </div>
+        <div class="sw-thumb-card">
+            <a href="https://www.instagram.com/p/DGKZM6TzIbT/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" class="sw-thumb-link" target="_blank">
+                <div class="sw-thumb-img" style="aspect-ratio: 1/1;">
+                    <img src="https://i.postimg.cc/C16dLhzt/image.png" alt="Carousel 4" class="sw-thumb-image">
+                    <div class="sw-play-overlay">▶</div>
+                </div>
+            </a>
+            <div class="sw-thumb-caption">
+                <div class="tc-title">🫂 [ BM QUOTE ] 🫂 "Being a person is a matter...</div>
+                <div class="tc-desc">Instagram Feeds</div>
+            </div>
+        </div>
+        <div class="sw-thumb-card">
+            <a href="https://www.instagram.com/p/C_pMFKgSmMT/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" class="sw-thumb-link" target="_blank">
+                <div class="sw-thumb-img" style="aspect-ratio: 1/1;">
+                    <img src="https://i.postimg.cc/PfgYmyqs/image.png" alt="Carousel 5" class="sw-thumb-image">
+                    <div class="sw-play-overlay">▶</div>
+                </div>
+            </a>
+            <div class="sw-thumb-caption">
+                <div class="tc-title">🤩 [BM DAILY] ⁉️ Halo MaiTeens! 👋🏻 Kalian pasti...</div>
+                <div class="tc-desc">Instagram Carousel</div>
+            </div>
+        </div>
+        <div class="sw-thumb-card">
+            <a href="https://www.instagram.com/p/DJYUybKTL7F/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" class="sw-thumb-link" target="_blank">
+                <div class="sw-thumb-img" style="aspect-ratio: 1/1;">
+                    <img src="https://i.postimg.cc/2S21X7Cn/image.png" alt="Carousel 6" class="sw-thumb-image">
+                    <div class="sw-play-overlay">▶</div>
+                </div>
+            </a>
+            <div class="sw-thumb-caption">
+                <div class="tc-title">👨‍👩‍👧‍👦 [BM EDUCATION] 😥 Halo Parents! 👋🏻 Sering tanpa...</div>
+                <div class="tc-desc">Instagram Carousel</div>
+            </div>
+        </div>    
+    </div>
+  </div>
+
+<div class="catalog-section">
+    <div class="catalog-label">Reels</div>
+    <div class="reels-grid-2layer">
+        <!-- BARIS 1 (3 Reels) -->
+        <div class="reel-card">
+            <a href="https://www.instagram.com/reel/DS725quE0UP/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" style="text-decoration: none;">
+                <div class="reel-img">
+                    <img src="https://i.postimg.cc/kgDg6LtR/image.png" alt="Reel 1">
+                    <div class="reel-overlay">
+                        <div class="reel-play">▶</div>
+                    </div>
+                </div>
+                <div class="reel-info">
+                    <div class="reel-title">🤍 [BM REELS] 🤍 POV: Banyak yang terlihat...</div>
+                </div>
+            </a>
+        </div>
+        <div class="reel-card">
+            <a href="https://www.instagram.com/reel/DJEPEJiz0Jk/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" style="text-decoration: none;">
+                <div class="reel-img">
+                    <img src="https://i.postimg.cc/cL3Pbmq0/image.png" alt="Reel 2">
+                    <div class="reel-overlay">
+                        <div class="reel-play">▶</div>
+                    </div>
+                </div>
+                <div class="reel-info">
+                    <div class="reel-title">📱[BM REELS] 🏃🏻‍♂️ Hah? Ada hacker yang mau...</div>
+                </div>
+            </a>
+        </div>
+        <div class="reel-card">
+            <a href="https://www.instagram.com/reel/DIyFu1Qz_kt/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" style="text-decoration: none;">
+                <div class="reel-img">
+                    <img src="https://i.postimg.cc/BZyYfKBW/image.png" alt="Reel 3">
+                    <div class="reel-overlay">
+                        <div class="reel-play">▶</div>
+                    </div>
+                </div>
+                <div class="reel-info">
+                    <div class="reel-title">🤪 [BM REELS] 🤟🏻 Halo MaiTeens! 👋🏻 Siapa nih...</div>
+                </div>
+            </a>
+        </div>
+
+        <!-- BARIS 2 (3 Reels) -->
+        <div class="reel-card">
+            <a href="https://www.instagram.com/reel/DH8QVizznaX/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" style="text-decoration: none;">
+                <div class="reel-img">
+                    <img src="https://i.postimg.cc/G9wx8vX7/image.png" alt="Reel 4">
+                    <div class="reel-overlay">
+                        <div class="reel-play">▶</div>
+                    </div>
+                </div>
+                <div class="reel-info">
+                    <div class="reel-title">🫶🏻 [BM REELS] ✨ Halo MaiTeens! 👋🏻 Kira-kira kalo...</div>
+                </div>
+            </a>
+        </div>
+        <div class="reel-card">
+            <a href="https://www.instagram.com/reel/DGNDkLbTHKv/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" style="text-decoration: none;">
+                <div class="reel-img">
+                    <img src="https://i.postimg.cc/BZ1y6p6t/image.png" alt="Reel 5">
+                    <div class="reel-overlay">
+                        <div class="reel-play">▶</div>
+                    </div>
+                </div>
+                <div class="reel-info">
+                    <div class="reel-title">🫣[BM REELS]⏰ POV: Murid langganan telat ke...</div>
+                </div>
+            </a>
+        </div>
+        <div class="reel-card">
+            <a href="https://www.instagram.com/reel/DFZae_MzjPP/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" style="text-decoration: none;">
+                <div class="reel-img">
+                    <img src="https://i.postimg.cc/1R6CPzCc/image.png" alt="Reel 6">
+                    <div class="reel-overlay">
+                        <div class="reel-play">▶</div>
+                    </div>
+                </div>
+                <div class="reel-info">
+                    <div class="reel-title">🧧 [BM REELS] 🏮 “Sisi lain dari Imlek?“...</div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+</section>
+<div class="divider" style="max-width:1200px;margin:60px auto;"></div>
+
+<!-- ═════════════════════════════════════════════════ -->
+<!-- ═══ ANTIKODE — FULL REVISED ═══ -->
+<!-- ═══════════════════════════════════════════════ -->
+<section id="antikode">
+  <div class="section-label">Experience</div>
+
+<!-- ── 1. DUAL HEADER ── -->
+<div class="ak-dual-header">
+  
+  <!-- Internship Card -->
+  <div class="ak-dual-item">
+    <div class="ad-role">INTERNSHIP</div>
+    <div class="ad-title">Social Media Officer</div>
+    <div class="ad-period">February 2025 — August 2025</div>
+    <div class="ad-desc">Entered as the sole social media person under the Marketing Communication team.</div>
+    <div class="ad-team">@antikode</div>
+  </div>
+
+  <!-- Freelancer Card -->
+  <div class="ak-dual-item">
+    <div class="ad-role">FREELANCER</div>
+    <div class="ad-title">Social Media Specialist</div>
+    <div class="ad-period">August 2025 — January 2026</div>
+    <div class="ad-desc">Promoted to specialist role with wider scope and more independent ownership.</div>
+    <div class="ad-team">@antikode & @alvadigitalnetwork</div>
+  </div>
+</div>
+
+  <!-- ── 2. ECOSYSTEM ── -->
+  <div class="ecosystem-box">
+    <h3>The Ecosystem I Worked In</h3>
+    <div class="eco-flow">
+      <div class="eco-node me">Me · Social Media<br>(Content Production)</div>
+      <span class="eco-arrow">↔</span>
+      <div class="eco-node">Marcomm Team<br>(Strategy & Direction)</div>
+      <span class="eco-arrow">↔</span>
+      <div class="eco-node">Graphic Designer<br>(Visual Assets)</div>
+      <span class="eco-arrow">↔</span>
+      <div class="eco-node">Writer<br>(Copy Collab)</div>
+      <span class="eco-arrow">↔</span>
+      <div class="eco-node">Motion Designer<br>(Video Assets)</div>
+    </div>
+    <div class="eco-note">We're all called the social media team. I came in to help lead the coordination, delivering the material, working with the writer and our graphic and motion designers team for assets, all while taking direction from the Marcomm team. This matters because our work didn't live in isolation. It moved through a real team workflow.</div>
+  </div>
+
+  <!-- ── 3. ROLE PROGRESSION ── -->
+  <div class="progression-box">
+    <h3>How the Role Evolved</h3>
+    <div class="prog-steps">
+      <div class="prog-step intern"><div class="ps-phase">Phase 1 · Internship</div><div class="ps-label">Learning & Building</div><div class="ps-desc">Understanding the ecosystem, learning client contexts, building the production workflow more smooth than before, and proving reliability through consistent output volume.</div></div>
+      <div class="prog-connector"><div class="arrow-line"></div><div class="arrow-head">▸</div></div>
+      <div class="prog-step freelance"><div class="ps-phase">Phase 2 · Freelancer</div><div class="ps-label">Scaling & Owning</div><div class="ps-desc">Taking the system built during internship and scaling it. More brands, more strategic input, greater end-to-end ownership. The promotion from Officer to Specialist reflected this growth.</div></div>
+    </div>
+  </div>
+
+  <!-- 4. CHALLENGE & GOAL -->
+  <div class="cg-grid">
+  <!-- CHALLENGE -->
+  <div class="cg-box">
+    <span class="cg-tag challenge">Challenge</span>
+    <p style="font-size:14px; color:#a1a1aa; line-height:1.7;">Antikode helps clients with UI/UX design, websites, and digital products. The work is complex, which is exactly what clients pay for. But complex work doesn't always translate into content that feels <strong>clear, relatable, or trustworthy</strong> at first glance.</p>
+    <p style="font-size:14px; color:#a1a1aa; line-height:1.7; margin-top:12px;">The question wasn't whether the work was good. It was how to <strong>tell the story</strong> in a way that made sense across Instagram, LinkedIn, and the website, without losing the depth that made it valuable.</p>
+  </div>
+
+  <!-- GOAL -->
+  <div class="cg-box">
+    <span class="cg-tag goal">Goal</span>
+    <p style="font-size:14px; color:#a1a1aa; line-height:1.7;">We needed a <strong>simple, repeatable system</strong> one that could turn any project into a <strong>coherent content journey</strong>.</p>
+    <p style="font-size:14px; color:#a1a1aa; line-height:1.7; margin-top:12px;">From a quick social teaser to a full case study, the story would unfold naturally. The same project could live as a <strong>scroll-stopping post</strong>, a <strong>portfolio highlight</strong>, and a <strong>detailed article</strong> without reinventing the wheel every time.</p>
+  </div>
+</div>
+
+<!-- ── 5. WHAT I WORKED ON ── -->
+<div style="margin-top:48px;margin-bottom:24px;">
+  <div class="section-label">Scope</div>
+  <div class="section-title" style="font-size:28px;margin-bottom:8px;">What I Worked On</div>
+</div>
+
+<!-- 3 Kolom Grid -->
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:32px;">
+  
+  <!-- Content Production -->
+  <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:24px;">
+    <h3 style="font-size:16px;font-weight:700;color:#e4e4e7;margin-bottom:16px;">🎬 Antikode & ALVA Content Production</h3>
+    <ul style="padding-left:20px;margin:0;">
+      <li style="font-size:13px;color:#a1a1aa;line-height:1.6;margin-bottom:6px;">Coordinate & Work closely with social media team</li>
+      <li style="font-size:13px;color:#a1a1aa;line-height:1.6;margin-bottom:6px;">Quality check before approval</li>
+    </ul>
+  </div>
+
+  <!-- Case Study Development -->
+  <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:24px;">
+    <h3 style="font-size:16px;font-weight:700;color:#e4e4e7;margin-bottom:16px;">📝 Antikode & ALVA Case Study Development</h3>
+    <ul style="padding-left:20px;margin:0;">
+      <li style="font-size:13px;color:#a1a1aa;line-height:1.6;margin-bottom:6px;">Full handle content input on website using CMS (WordPress)</li>
+      <li style="font-size:13px;color:#a1a1aa;line-height:1.6;margin-bottom:6px;">Content structuring for case study pages</li>
+    </ul>
+  </div>
+
+  <!-- Article Production + Thought Leadership (digabung) -->
+  <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:20px;">
+    
+    <!-- Article Production -->
+    <div>
+      <h3 style="font-size:16px;font-weight:700;color:#e4e4e7;margin-bottom:12px;">📄 Article Production — Antikode</h3>
+      <ul style="padding-left:20px;margin:0;">
+        <li style="font-size:13px;color:#a1a1aa;line-height:1.6;margin-bottom:6px;">MOFU articles with CMS publishing (WordPress + content structuring)</li>
+      </ul>
+    </div>
+
+    <!-- Thought Leadership -->
+    <div>
+      <h3 style="font-size:16px;font-weight:700;color:#e4e4e7;margin-bottom:12px;">💡 Thought Leadership — ALVA</h3>
+      <ul style="padding-left:20px;margin:0;">
+        <li style="font-size:13px;color:#a1a1aa;line-height:1.6;margin-bottom:6px;">Exclusive QnA with leader across agencies under ALVA</li>
+        <li style="font-size:13px;color:#a1a1aa;line-height:1.6;margin-bottom:6px;">Published as insight-driven social content on IG & LinkedIn, crediting the leader</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ── 6. WORKFLOW ── -->
+<div style="margin-top:40px;margin-bottom:12px;">
+  <div class="section-label">Workflow</div>
+  <div class="section-title" style="font-size:28px;margin-bottom:8px;">How Content Gets Published</div>
+</div>
+
+<div class="wf-flow-box">
+  <h3>Antikode (Internal Workflow)</h3>
+  <div class="wf-sublabel">From brief to ready to publish content, here's the full pipeline:</div>
+  
+  <!-- Horizontal scroll wrapper biar gak pecah di layar kecil -->
+  <div style="overflow-x: auto; padding-bottom: 16px;">
+    <div style="display: flex; align-items: center; gap: 8px; min-width: max-content;">
+      
+      <!-- 1. Me -->
+      <span class="wf-node highlight">Me<br><span style="font-size:10px; color:#ec4899;">(Content Hub)</span></span>
+      <span class="wf-arrow">→</span>
+
+      <!-- 2. Business Team -->
+      <span class="wf-node">Business Team<br><span style="font-size:10px; color:#52525b;">(Headsup project)</span></span>
+      <span class="wf-arrow">→</span>
+
+      <!-- 3. Marcomm -->
+      <span class="wf-node">Marcomm<br><span style="font-size:10px; color:#52525b;">(Set timeline)</span></span>
+      <span class="wf-arrow">→</span>
+
+      <!-- 4. UI/UX Designer -->
+      <span class="wf-node">UI/UX Designer<br><span style="font-size:10px; color:#52525b;">(Request assets)</span></span>
+      <span class="wf-arrow">→</span>
+
+      <!-- 5. Writer -->
+      <span class="wf-node">Writer<br><span style="font-size:10px; color:#52525b;">(Copywriting)</span></span>
+      <span class="wf-arrow">→</span>
+
+      <!-- 6. Graphic Design & Motion -->
+      <span class="wf-node">Graphic Design & Motion<br><span style="font-size:10px; color:#52525b;">(Develop assets)</span></span>
+      <span class="wf-arrow">→</span>
+      
+      <!-- 7. SEO -->
+      <span class="wf-node">SEO<br><span style="font-size:10px; color:#52525b;">(If article)</span></span>
+      <span class="wf-arrow">→</span>
+
+      <!-- 8. DevOps -->
+      <span class="wf-node">DevOps<br><span style="font-size:10px; color:#52525b;">(If case study & article)</span></span>
+      <span class="wf-arrow">→</span>
+
+      <!-- 9. Approval -->
+      <span class="wf-node">Approval<br><span style="font-size:10px; color:#52525b;">(CEO & Creative Head)</span></span>
+      <span class="wf-arrow">→</span>
+
+      <!-- 10. Ready to Publish -->
+      <span class="wf-node">Ready to Publish<br><span style="font-size:10px; color:#52525b;">(Marcomm team)</span></span>
+    </div>
+  </div>
+  <div class="wf-flow-note" style="margin-top:24px;">
+    <strong style="color:#ec4899;">📍 My Role:</strong> I initiate the workflow and coordinate across divisions at Antikode, ensuring smooth handoffs from brief to publish-ready content.
+  </div>
+</div>
+<div class="alva-flow-box">
+  <h3>ALVA Digital Network (External Workflow)</h3>
+  <div class="wf-sublabel">Weekly case study production across 7+ agencies</div>
+  
+  <!-- Horizontal scroll wrapper biar gak pecah di layar kecil -->
+  <div style="overflow-x: auto; padding-bottom: 16px;">
+    <div style="display: flex; align-items: center; gap: 8px; min-width: max-content;">
+      
+      <!-- 1. Me -->
+      <span class="wf-node highlight">Me<br><span style="font-size:10px; color:#ec4899;">(Content Hub)</span></span>
+      <span class="wf-arrow">→</span>
+
+      <!-- 2. Agencies Partner -->
+      <span class="wf-node">Agencies Partner<br><span style="font-size:10px; color:#52525b;">(Antikode, Orca, Orbeam, Orbeat, Olrange, Olround, Maleo, FroyoStory)</span></span>
+      <span class="wf-arrow">→</span>
+
+      <!-- 3. Content Structuring -->
+      <span class="wf-node">Content Structuring<br><span style="font-size:10px; color:#52525b;">(Collab with PIC agencies)</span></span>
+      <span class="wf-arrow">→</span>
+
+      <!-- 4. Design Alignment -->
+      <span class="wf-node">Design Alignment<br><span style="font-size:10px; color:#52525b;">(Social media team)</span></span>
+      <span class="wf-arrow">→</span>
+
+      <!-- 5. CMS Input -->
+      <span class="wf-node">CMS Input<br><span style="font-size:10px; color:#52525b;">(WordPress content entry)</span></span>
+      <span class="wf-arrow">→</span>
+
+      <!-- 6. Approval (PIC + Head) -->
+      <span class="wf-node">Approval<br><span style="font-size:10px; color:#52525b;">(PIC agencies + Agencies Head)</span></span>
+      <span class="wf-arrow">→</span>
+
+      <!-- 7. Approval (CEO) -->
+      <span class="wf-node">Approval<br><span style="font-size:10px; color:#52525b;">(CEO Antikode)</span></span>
+      <span class="wf-arrow">→</span>
+
+      <!-- 8. Ready to Publish -->
+      <span class="wf-node">Ready to Publish<br><span style="font-size:10px; color:#52525b;">(Marcomm Team)</span></span>
+      
+    </div>
+  </div>
+  <div class="alva-note" style="margin-top:24px;">
+    <strong style="color:#ec4899;">📍 My Role:</strong> I coordinate across 7+ external agencies, align content structure, collaborate with design teams, and handle CMS input. Once approved, I publish the final case study and brief the Marcomm team to publish the case study content to social media.
+  </div>
+</div>
+
+  <!-- ── 7. A-WEEK-AHEAD ── -->
+<div style="margin-top:48px;margin-bottom:12px;">
+  <div class="section-label">Initiative</div>
+  <div class="section-title" style="font-size:28px;margin-bottom:8px;">2-Week Readiness System</div>
+</div>
+
+<div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); border-radius:20px; padding:32px; margin-bottom:24px;">
+ 
+  <p style="font-size:14px; color:#a1a1aa; line-height:1.8; margin-bottom:20px;">
+    Every week, I align with the Business Team and Creative Team to identify ongoing projects and draft all potential content in advance. The core principle is <strong style="color:#ec4899;">always having content ready 2 weeks before publish date</strong>. This creates a buffer system. Even if Plan A gets pushed, <strong style="color:#ec4899;">Plan B is always ready</strong>.</p>
+  <div class="wf-result"><h3>✦ Results from This Workflow</h3><div class="wf-result-stats"><div class="wf-rs"><div class="num">+27%</div><div class="lab">Instagram Growth<br>(vs 2024 baseline)</div></div><div class="wf-rs"><div class="num">+30%</div><div class="lab">LinkedIn Growth<br>(vs 2024 baseline)</div></div><div class="wf-rs"><div class="num">2026</div><div class="lab">Content Bank<br>System Development</div></div></div></div>
+  <div class="note-box orange"><span class="nb-label">💡 Context</span>The growth figures above are a <strong>combined result</strong> of the overall team strategy. The more content produced consistently, the stronger the base for distribution and awareness.</div>
+
+  <!-- ── 8. CHANNEL DYNAMICS ── -->
+  <div style="margin-top:48px;margin-bottom:12px;"><div class="section-label">Channel Performance</div><div class="section-title" style="font-size:28px;margin-bottom:8px;">Channel Dynamics 2024 → 2025</div></div>
+  <div class="channel-grid-3">
+    <div class="ch-card ig"><div class="ch-icon">📷</div><h3>Instagram</h3><div class="ch-sub">Primary brand visibility channel</div><div class="ch-stats"><div class="ch-row"><span class="lab">Exposure</span><span class="val">+220%</span></div><div class="ch-row"><span class="lab">Engagement</span><span class="val">+93%</span></div><div class="ch-row"><span class="lab">Followers</span><span class="val">+47%</span></div></div><div class="ch-note"><p><strong>Volume & consistency increased.</strong></p></div></div>
+    <div class="ch-card li"><div class="ch-icon">💼</div><h3>LinkedIn</h3><div class="ch-sub">Professional communication hub</div><div class="ch-stats"><div class="ch-row"><span class="lab">Exposure</span><span class="val">+20%</span></div><div class="ch-row"><span class="lab">Followers</span><span class="val">+20,6%</span></div></div><div class="ch-note"><p><strong>Posting consistency improved.</strong></p></div></div>
+    <div class="ch-card web"><div class="ch-icon">🌐</div><h3>Organic Website</h3><div class="ch-sub">SEO-driven content engine</div><div class="ch-stats"><div class="ch-row"><span class="lab">Traffic Growth</span><span class="val">+43%</span></div></div><div class="ch-note"><p><strong>This is 100% my output, from the content I produced such as case studies and articles.</strong></p></div></div>
+  </div>
+  <div class="note-box purple"><span class="nb-label">⚡️ Important Context</span>Website traffic in 2025 grew drastically.</div>
+
+  <!-- ── 9. CLIENTS ── -->
+<div style="margin-top:48px;margin-bottom:24px;">
+  <div class="section-label">Client Portfolio</div>
+  <div class="section-title" style="font-size:28px;margin-bottom:8px;">37 Brands Served</div>
+  <div style="font-size:14px;color:#71717a;margin-bottom:32px;">From internship to freelancer, across multiple industries.</div>
+</div>
+
+<!-- Baris 1 (kanan) - 10 client + duplikasi -->
+<div class="marquee-row">
+  <div class="marquee-track marquee-right">
+    <!-- Set 1 (asli) -->
+    <span class="client-chip">Compass</span>
+    <span class="client-chip">Guéle</span>
+    <span class="client-chip">Arka Group</span>
+    <span class="client-chip">Kahf</span>
+    <span class="client-chip">SilverQueen</span>
+    <span class="client-chip">Sam&Natt</span>
+    <span class="client-chip">SoD Purwadhika</span>
+    <span class="client-chip">Agung Sedayu Group</span>
+    <span class="client-chip">Union</span>
+    <span class="client-chip">Hejaz</span>
+    <!-- Set 2 (duplikasi) -->
+    <span class="client-chip">Compass</span>
+    <span class="client-chip">Guéle</span>
+    <span class="client-chip">Arka Group</span>
+    <span class="client-chip">Kahf</span>
+    <span class="client-chip">SilverQueen</span>
+    <span class="client-chip">Sam&Natt</span>
+    <span class="client-chip">SoD Purwadhika</span>
+    <span class="client-chip">Agung Sedayu Group</span>
+    <span class="client-chip">Union</span>
+    <span class="client-chip">Hejaz</span>
+  </div>
+</div>
+
+<!-- Baris 2 (kiri) - 9 client + duplikasi -->
+<div class="marquee-row">
+  <div class="marquee-track marquee-left">
+    <!-- Set 1 (asli) -->
+    <span class="client-chip">McDonald's</span>
+    <span class="client-chip">Ultramilk</span>
+    <span class="client-chip">Hyundai</span>
+    <span class="client-chip">Djakarta Warehouse Project</span>
+    <span class="client-chip">Digibank by DBS</span>
+    <span class="client-chip">by.U</span>
+    <span class="client-chip">Feal Skincare</span>
+    <span class="client-chip">Izzy Social Club</span>
+    <span class="client-chip">Heartology</span>
+    <!-- Set 2 (duplikasi) -->
+    <span class="client-chip">McDonald's</span>
+    <span class="client-chip">Ultramilk</span>
+    <span class="client-chip">Hyundai</span>
+    <span class="client-chip">Djakarta Warehouse Project</span>
+    <span class="client-chip">Digibank by DBS</span>
+    <span class="client-chip">by.U</span>
+    <span class="client-chip">Feal Skincare</span>
+    <span class="client-chip">Izzy Social Club</span>
+    <span class="client-chip">Heartology</span>
+  </div>
+</div>
+
+<!-- Baris 3 (kanan) - 9 client + duplikasi -->
+<div class="marquee-row">
+  <div class="marquee-track marquee-right">
+    <!-- Set 1 (asli) -->
+    <span class="client-chip">Azko</span>
+    <span class="client-chip">Wuling</span>
+    <span class="client-chip">OCBC Indonesia</span>
+    <span class="client-chip">Pocari Sweat</span>
+    <span class="client-chip">XL Axiata</span>
+    <span class="client-chip">Herbilogy</span>
+    <span class="client-chip">Regen</span>
+    <span class="client-chip">Bitte</span>
+    <span class="client-chip">Massive Music</span>
+    <!-- Set 2 (duplikasi) -->
+    <span class="client-chip">Azko</span>
+    <span class="client-chip">Wuling</span>
+    <span class="client-chip">OCBC Indonesia</span>
+    <span class="client-chip">Pocari Sweat</span>
+    <span class="client-chip">XL Axiata</span>
+    <span class="client-chip">Herbilogy</span>
+    <span class="client-chip">Regen</span>
+    <span class="client-chip">Bitte</span>
+    <span class="client-chip">Massive Music</span>
+  </div>
+</div>
+
+<!-- Baris 4 (kiri) - 9 client + duplikasi -->
+<div class="marquee-row">
+  <div class="marquee-track marquee-left">
+    <!-- Set 1 (asli) -->
+    <span class="client-chip">BCA Indonesia</span>
+    <span class="client-chip">Siloam Hospital</span>
+    <span class="client-chip">Fox's</span>
+    <span class="client-chip">MIR Insurance</span>
+    <span class="client-chip">Bank Saqu</span>
+    <span class="client-chip">Scape</span>
+    <span class="client-chip">RS Bunda</span>
+    <span class="client-chip">Paragon Corp</span>
+    <span class="client-chip">Garnier</span>
+    <!-- Set 2 (duplikasi) -->
+    <span class="client-chip">BCA Indonesia</span>
+    <span class="client-chip">Siloam Hospital</span>
+    <span class="client-chip">Fox's</span>
+    <span class="client-chip">MIR Insurance</span>
+    <span class="client-chip">Bank Saqu</span>
+    <span class="client-chip">Scape</span>
+    <span class="client-chip">RS Bunda</span>
+    <span class="client-chip">Paragon Corp</span>
+    <span class="client-chip">Garnier</span>
+  </div>
+</div>
+  <div class="industry-tags">
+    <span class="ind-tag">🚗 Automotive</span>
+    <span class="ind-tag">🏦 Banking & Finance</span>
+    <span class="ind-tag">🏥 Healthcare</span>
+    <span class="ind-tag">👗 Fashion & Beauty</span>
+    <span class="ind-tag">🍔 F&B</span>
+    <span class="ind-tag">💻 Technology</span>
+    <span class="ind-tag">🏠 Retail</span>
+    <span class="ind-tag">📚 Education</span>
+   </div>
+</div>
+
+  <!-- ── 10. PRODUCTION BREAKDOWN ── -->
+  <div style="margin-top:48px;margin-bottom:12px;"><div class="section-label">Deep Dive</div><div class="section-title" style="font-size:28px;margin-bottom:8px;">Content Production Breakdown</div></div>
+
+  <div class="prod-stats">
+    <div class="prod-stat"><div class="ps-icon">📊</div><div class="num">40+</div><div class="met">Antikode Content on LinkedIn<br>Published</div></div>
+    <div class="prod-stat"><div class="ps-icon">📊</div><div class="num">45+</div><div class="met">Antikode Content on Instagram<br>Published</div></div>
+    <div class="prod-stat"><div class="ps-icon">📊</div><div class="num">50+</div><div class="met">ALVA Content on LinkedIn<br>Published</div></div>
+    <div class="prod-stat"><div class="ps-icon">📊</div><div class="num">40+</div><div class="met">Antikode Content on Instagram<br>Published</div></div>
+    <div class="prod-stat"><div class="ps-icon">📝</div><div class="num">17</div><div class="met">Antikode Case Studies on Website<br>Published</div></div>
+    <div class="prod-stat"><div class="ps-icon">📝</div><div class="num">27</div><div class="met">ALVA Case Studies on Website<br>Published</div></div>
+    <div class="prod-stat"><div class="ps-icon">📄</div><div class="num">21</div><div class="met">Antikode MOFU Articles on Website<br>Published</div></div>
+    <div class="prod-stat"><div class="ps-icon">💡</div><div class="num">7</div><div class="met">ALVA Thought Leadership on Instagram Published</div></div>
+  </div>
+
+<!-- ── 11. CONTENT FORMATS ── -->
+<div style="margin-top:48px;margin-bottom:12px;"><div class="section-label">Content Formats</div><div class="section-title" style="font-size:28px;margin-bottom:8px;">What I Produced</div></div>
+
+<!-- 1. Antikode — Portofolio Content(Visual Grid) -->
+<div style="margin-top:24px;margin-bottom:14px;">
+  <div class="sw-cat-head">Antikode — Portofolio Content<span class="cat-count">7 selected work</span></div>
+</div>
+
+<div class="sw-thumb-grid">
+  <!-- Item 1 -->
+  <div class="sw-thumb-card">
+    <a href="https://www.instagram.com/reel/DIxsU7ISIpv/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" class="sw-thumb-link" target="_blank">
+      <div class="sw-thumb-img">
+        <img src="https://i.postimg.cc/9XbnKDk7/sepatu-compass.jpg" alt="SEPATU COMPASS" class="sw-thumb-image">
+        <div class="sw-play-overlay">▶</div>
+      </div>
+    </a>
+    <div class="sw-thumb-caption">
+      <div class="tc-title">SEPATU COMPASS</div>
+      <div class="tc-desc">Instagram Reels</div>
+    </div>
+  </div>
+
+  <!-- Item 2 -->
+  <div class="sw-thumb-card">
+    <a href="https://www.instagram.com/p/DSMwpJOkesK/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" class="sw-thumb-link" target="_blank">
+      <div class="sw-thumb-img">
+        <img src="https://i.postimg.cc/ZqJNG52v/dwp-2025.jpg" alt="DWP 2025" class="sw-thumb-image">
+        <div class="sw-play-overlay">▶</div>
+      </div>
+    </a>
+    <div class="sw-thumb-caption">
+      <div class="tc-title">DWP 2025</div>
+      <div class="tc-desc">Instagram Carousel</div>
+    </div>
+  </div>
+
+  <!-- Item 3 -->
+  <div class="sw-thumb-card">
+    <a href="https://www.instagram.com/p/DSZs1rykyNH/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" class="sw-thumb-link" target="_blank">
+      <div class="sw-thumb-img">
+        <img src="https://i.postimg.cc/pLs8tHHc/pocari-sweat.jpg" alt="POCARI SWEAT" class="sw-thumb-image">
+        <div class="sw-play-overlay">▶</div>
+      </div>
+    </a>
+    <div class="sw-thumb-caption">
+      <div class="tc-title">POCARI SWEAT</div>
+      <div class="tc-desc">Instagram Carousel</div>
+    </div>
+  </div>
+
+  <!-- Item 4 -->
+  <div class="sw-thumb-card">
+    <a href="https://www.instagram.com/reel/DQBuzrWkR1a/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" class="sw-thumb-link" target="_blank">
+      <div class="sw-thumb-img">
+        <img src="https://i.postimg.cc/MpHHVfCV/kahf.jpg" alt="KAHF FRAGRANCE" class="sw-thumb-image">
+        <div class="sw-play-overlay">▶</div>
+      </div>
+    </a>
+    <div class="sw-thumb-caption">
+      <div class="tc-title">KAHF FRAGRANCE</div>
+      <div class="tc-desc">Instagram Reels</div>
+    </div>
+  </div>
+
+  <!-- Item 5 -->
+  <div class="sw-thumb-card">
+    <a href="https://www.instagram.com/p/DSFMZL6E8-0/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" class="sw-thumb-link" target="_blank">
+      <div class="sw-thumb-img">
+        <img src="https://i.postimg.cc/W4RVzDTc/sedayu-one.jpg" alt="SEDAYU ONE APP" class="sw-thumb-image">
+        <div class="sw-play-overlay">▶</div>
+      </div>
+    </a>
+    <div class="sw-thumb-caption">
+      <div class="tc-title">SEDAYU ONE APP</div>
+      <div class="tc-desc">Instagram Carousel</div>
+    </div>
+  </div>
+
+<!-- Item 6 -->
+  <div class="sw-thumb-card">
+    <a href="https://www.instagram.com/reel/DKHN8i8yh0u/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" class="sw-thumb-link" target="_blank">
+      <div class="sw-thumb-img">
+        <img src="https://i.postimg.cc/dVwXx8sw/guele.jpg" alt="GUELE" class="sw-thumb-image">
+        <div class="sw-play-overlay">▶</div>
+      </div>
+    </a>
+    <div class="sw-thumb-caption">
+      <div class="tc-title">GUELE</div>
+      <div class="tc-desc">Instagram Reels</div>
+    </div>
+  </div>
+
+  <!-- Item 7 -->
+  <div class="sw-thumb-card">
+    <a href="https://www.instagram.com/p/DLPV8WBS8xR/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" class="sw-thumb-link" target="_blank">
+      <div class="sw-thumb-img">
+        <img src="https://i.postimg.cc/52LGPsW1/feal-skin.jpg" alt="FEAL SKINCARE" class="sw-thumb-image">
+        <div class="sw-play-overlay">▶</div>
+      </div>
+    </a>
+    <div class="sw-thumb-caption">
+      <div class="tc-title">FEAL SKINCARE</div>
+      <div class="tc-desc">Instagram Carousel</div>
+    </div>
+  </div>
+</div>
+
+<!-- 3. Antikode — Case Studies (List with Link) -->
+<div style="margin-top:24px;margin-bottom:14px;"><div class="sw-cat-head">Antikode — Case Studies <span class="cat-count">3 selected work</span></div></div>
+<div class="sw-list">
+  <div class="sw-list-item"><span class="sw-num">1.</span><span class="sw-title">McDonald's Seruan Juga Ramean</span><a href="https://antikode.com/work/mcd-seruan-juga-ramean" class="sw-link">View Case Study →</a></div>
+  <div class="sw-list-item"><span class="sw-num">2.</span><span class="sw-title">Paragon Beauty Science Tech App</span><a href="https://antikode.com/work/paragon-bsta" class="sw-link">View Case Study →</a></div>
+  <div class="sw-list-item"><span class="sw-num">4.</span><span class="sw-title">SilverQueen #BanyakMaknaCinta</span><a href="https://antikode.com/work/silverqueen-banyakmaknacinta" class="sw-link">View Case Study →</a></div>
+</div>
+
+<!-- 4. Antikode — MOFU Articles (List with Link) -->
+<div style="margin-top:24px;margin-bottom:14px;"><div class="sw-cat-head">Antikode — MOFU Articles <span class="cat-count">3 selected work</span></div></div>
+<div class="sw-list">
+  <div class="sw-list-item"><span class="sw-num">1.</span><span class="sw-title">Retain More Website Visitors with Google Analytics 4 Data</span><a href="https://antikode.com/insights/google-analytics-4-to-retain-visitors" class="sw-link">View Article →</a></div>
+  <div class="sw-list-item"><span class="sw-num">2.</span><span class="sw-title">Tiny UX Details That Feel Like Magic</span><a href="https://antikode.com/insights/tiny-ux-details-that-feel-like-magic" class="sw-link">View Article →</a></div>
+  <div class="sw-list-item"><span class="sw-num">3.</span><span class="sw-title">From Creative Idea to Project: A Complete Guide for Designers</span><a href="https://antikode.com/insights/from-creative-idea-to-project-a-complete-guide-for-designers" class="sw-link">View Article →</a></div>
+</div>
+
+<!-- 5. ALVA — Case Studies (List with Link) -->
+<div style="margin-top:24px;margin-bottom:14px;"><div class="sw-cat-head">ALVA — Case Studies <span class="cat-count">3 selected work</span></div></div>
+<div class="sw-list">
+  <div class="sw-list-item"><span class="sw-num">1.</span><span class="sw-title">Ultra Milk x Stray Kids #ULTRAoddinary</span><a href="https://alva.digital/projects/ultra-milk-x-stray-kids-ultraoddinary" class="sw-link">View Case Study →</a></div>
+  <div class="sw-list-item"><span class="sw-num">2.</span><span class="sw-title">Hyundai STARIA: Digital Launching</span><a href="https://alva.digital/projects/hyundai-staria-largerthanlife" class="sw-link">View Case Study →</a></div>
+  <div class="sw-list-item"><span class="sw-num">3.</span><span class="sw-title">DBS digibank x Digital Sea #JalaniCerdikmu</span><a href="https://alva.digital/projects/dbs-digibank-x-digital-sea-jalanicerdikmu" class="sw-link">View Case Study →</a></div>
+</div>
+
+<!-- 6. ALVA — Thought Leadership (List with Link) -->
+<div style="margin-top:24px;margin-bottom:14px;"><div class="sw-cat-head">ALVA — Thought Leadership Content<span class="cat-count">3 selected work</span></div></div>
+<div class="sw-list">
+  <div class="sw-list-item"><span class="sw-num">1.</span><span class="sw-title">Think Like a Strategists by Alexander Nugi</span><a href="https://www.instagram.com/p/DI03t3zzrMe/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" class="sw-link">View Content →</a></div>
+  <div class="sw-list-item"><span class="sw-num">2.</span><span class="sw-title">Data-Driven Ways to Select Influencer by Reza Akbar</span><a href="https://www.instagram.com/p/DO7qNgSAMHV/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" class="sw-link">View Content →</a></div>
+  <div class="sw-list-item"><span class="sw-num">3.</span><span class="sw-title">Teamwork Makes the Dream Work by Jedi Parta</span><a href="https://www.instagram.com/p/DTcqz4jEatZ/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" class="sw-link">View Content →</a></div>
+</div>
+
+<!-- 7. Other Contents (Visual Grid - sama seperti Portfolio Content) -->
+<div style="margin-top:48px;margin-bottom:12px;">
+  <div class="section-label">Other Contents</div>
+</div>
+
+<div class="other-grid">
+  <!-- Item 1 -->
+  <div class="other-card">
+    <a href="https://www.instagram.com/reel/DGCoWZ6SPDH/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" class="other-link" target="_blank">
+      <div class="other-placeholder">
+        <img src="https://i.postimg.cc/zX2VPf7G/greetings-antikode-valentine.jpg" alt="Greetings Valentine 2025" class="other-thumb">
+        <div class="play-icon-overlay">▶</div>
+      </div>
+    </a>
+    <div class="other-caption">
+      <div class="oc-platform">Instagram Reels</div>
+      <div class="oc-title">Greetings Valentine 2025</div>
+    </div>
+  </div>
+
+  <!-- Item 2 -->
+  <div class="other-card">
+    <a href="https://www.instagram.com/p/DOnmd8ZE8jA/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" class="other-link" target="_blank">
+      <div class="other-placeholder">
+        <img src="https://i.postimg.cc/YCxQ97fg/mcd-bukber-thropies-winner.jpg" alt="McDonald’s Buka Berhadiah Campaign Trophies" class="other-thumb">
+        <div class="play-icon-overlay">▶</div>
+      </div>
+    </a>
+    <div class="other-caption">
+      <div class="oc-platform">Instagram Carousel</div>
+      <div class="oc-title">McDonald’s Buka Berhadiah Campaign Trophies</div>
+    </div>
+  </div>
+
+  <!-- Item 3 -->
+  <div class="other-card">
+    <a href="https://www.instagram.com/reel/DOVkoKlk9Ac/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" class="other-link" target="_blank">
+      <div class="other-placeholder">
+        <img src="https://i.postimg.cc/FKdF6gRf/antikode-13th-anniversary.jpg" alt="Antikode's 13th Anniversary Celebration" class="other-thumb">
+        <div class="play-icon-overlay">▶</div>
+      </div>
+    </a>
+    <div class="other-caption">
+      <div class="oc-platform">Instagram Reels</div>
+      <div class="oc-title">Antikode's 13th Anniversary Celebration</div>
+    </div>
+  </div>
+
+  <!-- Item 4 -->
+  <div class="other-card">
+    <a href="https://www.instagram.com/p/DO-xjUsEx0T/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" class="other-link" target="_blank">
+      <div class="other-placeholder">
+        <img src="https://i.postimg.cc/KjdDn51X/antikode-outing-experience-2025.jpg" alt="Antikode's Outing Experience 2025" class="other-thumb">
+        <div class="play-icon-overlay">▶</div>
+      </div>
+    </a>
+    <div class="other-caption">
+      <div class="oc-platform">Instagram Carousel</div>
+      <div class="oc-title">Antikode's Outing Experience 2025</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 12. KEY CONTRIBUTIONS ── -->
+<div style="margin-top:48px;margin-bottom:12px;">
+  <div class="section-label">Takeaway</div>
+  <div class="section-title" style="font-size:28px;margin-bottom:8px;">Key Contributions</div>
+</div>
+
+<div class="takeaway-list">
+  <div class="tk-item">
+    <div class="tk-icon">✦</div>
+    <div class="tk-text">
+      <h4>Managed end-to-end content execution</h4>
+      <p>Handled the full content lifecycle from brief to publish-ready output across Antikode and ALVA Digital Network.</p>
+    </div>
+  </div>
+  <div class="tk-item">
+    <div class="tk-icon">📋</div>
+    <div class="tk-text">
+      <h4>Built structured case study pipeline</h4>
+      <p>Established and managed a repeatable case study production system across agencies under ALVA Digital Network.</p>
+    </div>
+  </div>
+  <div class="tk-item">
+    <div class="tk-icon">🌐</div>
+    <div class="tk-text">
+      <h4>Maintained multi-brand content system</h4>
+      <p>Kept content and branding consistent across Antikode and ALVA networks without dropping quality.</p>
+    </div>
+  </div>
+  <div class="tk-item">
+    <div class="tk-icon">🤝</div>
+    <div class="tk-text">
+      <h4>Coordinated across teams & agencies</h4>
+      <p>Work with internal teams, external teams, and agencies to ensure content consistency and continuity.</p>
+    </div>
+  </div>
+  <div class="tk-item">
+    <div class="tk-icon">📢</div>
+    <div class="tk-text">
+      <h4>Served as PIC for Antikode Recap 2025</h4>
+      <p>Annual campaign highlight publication featuring agency's key projects and results from the year.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── VIDEO EMBEDS ── -->
+<div style="margin-top:48px;margin-bottom:12px;"><div class="section-label">Featured Publication</div><div class="section-title" style="font-size:28px;margin-bottom:8px;">Antikode Recap 2025 — Campaign Highlight</div></div>
+
+<div class="video-grid">
+  <div class="video-card">
+    <a href="https://www.instagram.com/reel/DS84i_Lkyb7/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" class="video-link" target="_blank">
+      <div class="video-placeholder">
+        <img src="https://i.postimg.cc/QxSrVbjh/thumbnail-ig-linkedin-antikode-recap-2025.jpg" alt="Antikode Recap 2025 Instagram" class="video-thumb">
+        <div class="play-icon-overlay">▶</div>
+      </div>
+    </a>
+    <div class="video-caption">
+      <div class="vc-platform">Instagram</div>
+      <div class="vc-title">Antikode Recap 2025</div>
+    </div>
+  </div>
+
+  <div class="video-card">
+    <a href="https://www.linkedin.com/posts/antikode_antikode2026recap-activity-7412666983764156416-6A4Z?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEm9GbIBAj8tAExt2Mnx2XNnLy-sboDS7PM" class="video-link" target="_blank">
+      <div class="video-placeholder">
+        <img src="https://i.postimg.cc/QxSrVbjh/thumbnail-ig-linkedin-antikode-recap-2025.jpg" alt="Antikode Recap 2025 LinkedIn" class="video-thumb">
+        <div class="play-icon-overlay">▶</div>
+      </div>
+    </a>
+    <div class="video-caption">
+      <div class="vc-platform">LinkedIn</div>
+      <div class="vc-title">Antikode Recap 2025</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="projects">
+    <div class="section-label">PORTFOLIO</div>
+    <div class="section-title">My Creative Works</div>
+    <p class="section-subtitle">Selected projects across social media, content creation, and branding</p>
+    
+    <!-- Filter Buttons -->
+    <div class="projects-filter">
+        <button class="filter-btn active-filter" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="social">Social Media</button>
+        <button class="filter-btn" data-filter="content">Content Creation</button>
+        <button class="filter-btn" data-filter="campaign">Campaign</button>
+        <button class="filter-btn" data-filter="branding">Branding</button>
+    </div>
+    
+    <div class="projects-grid" id="projectsGrid">
+        
+        <!-- PROJECT 2: BLINDBOX SEEDKEPEERS (Campaign) -->
+        <div class="project-card" data-category="campaign" " data-project="0">
+            <div class="project-img">
+                <img src="https://i.postimg.cc/6pDw6YjB/meet-THE-SEED-KEEPERS.png" alt="BLINDBOX SEEDKEPEERS">
+                <div class="project-overlay">
+                    <span>👁️</span>
+                </div>
+            </div>
+            <div class="project-info">
+                <h3 class="project-title">BLINDBOX SEEDKEPEERS</h3>
+                <div class="project-category">Campaign</div>
+                <p class="project-desc">Sustainability campaign combining blindbox mystery with seed planting.</p>
+                <div class="project-tech">
+                    <span>Campaign Strategy</span>
+                    <span>Concept Development</span>
+                </div>
+            </div>
+        </div>
+        <!-- PROJECT 3: HEALME OFFICIAL (Content Creation) -->
+        <div class="project-card" data-category="content" data-project="1">
+            <div class="project-img">
+                <img src="https://i.postimg.cc/fTY6zJ0y/image.png" alt="HEALME OFFICIAL">
+                <div class="project-overlay">
+                    <span>👁️</span>
+                </div>
+            </div>
+            <div class="project-info">
+                <h3 class="project-title">HEALME OFFICIAL</h3>
+                <div class="project-category">Content Creation</div>
+                <p class="project-desc">TikTok content strategy and video production for health & dietary tips.</p>
+                <div class="project-tech">
+                    <span>Capcut</span>
+                    <span>TikTok</span>
+                    <span>Video Editing</span>
+                </div>
+            </div>
+        </div>      
+        <!-- PROJECT 4: HEIHA (Content Creation) -->
+        <div class="project-card" data-category="content" data-project="2">
+            <div class="project-img">
+                <img src="https://i.postimg.cc/L5tt0CJj/image.png" alt="HEIHA TOUR TRAVEL">
+                <div class="project-overlay">
+                    <span>👁️</span>
+                </div>
+            </div>
+            <div class="project-info">
+                <h3 class="project-title">HEIHA TOUR TRAVEL</h3>
+                <div class="project-category">Content Creation</div>
+                <p class="project-desc">Creating Instagram feed and story designs for a tour & travel brand.</p>
+                <div class="project-tech">
+                    <span>Canva</span>
+                    <span>Visual Design</span>
+                    <span>Moodboard</span>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>
+
+<section id="contact" class="contact-section">
+  <div class="section-label">Let's Connect and Collaborate Together</div>
+  <div class="section-title">Work With Me</div>
+  <p class="section-subtitle">Don't hesitate to reach me out.</p>
+  <div class="contact-cards">
+    <a href="https://wa.me/6281310650952" class="contact-card" target="_blank"><div class="cc-icon">📱</div><span>WhatsApp</span></a>
+    <a href="mailto:hey.felicia.angel@gmail.com" class="contact-card"><div class="cc-icon">✉️</div><span>hey.felicia.angel@gmail.com</span></a>
+    <a href="https://www.linkedin.com/in/felicia-angelica-agatha-61638b2a6/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B6QDOIvvwTY%2BHBpSZFkSxGg%3D%3D%3D" class="contact-card" target="_blank"><div class="cc-icon">💼</div><span>LinkedIn</span></a>
+    <a href="https://instagram.com/ifeliciaangel" class="contact-card" target="_blank"><div class="cc-icon">💬</div><span>Instagram</span></a>
+  </div>
+  <div class="closing"><p>CONTACT ME TO DISCUSS SOMETHING!<br>THANK YOU</p></div>
+</section>
+
+<footer>© 2026 Felicia Angelica Agatha — Portfolio</footer>
+
+     <!-- PROJECT MODAL HTML -->
+<div id="projectModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-close">✕</div>
+        <div class="modal-body">
+            <h2 id="modalTitle" class="modal-title"></h2>
+            <span id="modalCategory" class="modal-category"></span>
+            <p id="modalDesc" class="modal-description"></p>
+            <div id="modalLongDesc" class="modal-long-description"></div>
+            <div id="modalContentGrid" class="modal-content-grid"></div>
+            <div id="modalTech" class="modal-tech"></div>
+            <div id="modalResults" class="modal-results"></div>
+            <div id="modalLinks" class="modal-links"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+// ============================================
+// 1. LOADER ANIMATION
+// ============================================
+(function() {
+    const loader = document.querySelector('.loader-overlay');
+    const progressFill = document.querySelector('.progress-fill');
+    const progressText = document.getElementById('progressText');
+    let start = null;
+    
+    function animateLoader(ts) {
+        if (!start) start = ts;
+        const elapsed = ts - start;
+        const progress = Math.min(elapsed / 2000, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        
+        if (progressText) progressText.textContent = Math.round(eased * 100) + '%';
+        if (progressFill) progressFill.style.width = (eased * 100) + '%';
+        
+        if (progress < 1) {
+            requestAnimationFrame(animateLoader);
+        } else {
+            setTimeout(() => { if (loader) loader.classList.add('hidden'); }, 200);
+        }
+    }
+    
+    requestAnimationFrame(animateLoader);
+})();
+
+// ============================================
+// 2. ROLLING NUMBER EFFECT
+// ============================================
+(function() {
+    const rollNumbers = document.querySelectorAll('.impact-card .num, .blue-stat .num');
+    
+    const rollObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !entry.target.dataset.rolled) {
+                entry.target.dataset.rolled = 'true';
+                
+                let originalText = entry.target.innerText;
+                let rawNumber = originalText.replace(/[^0-9.,]/g, '').replace(',', '.');
+                let prefix = originalText.match(/^[^0-9]*/)[0];
+                let suffix = originalText.match(/[^0-9]*$/)[0];
+                let targetNumber = parseFloat(rawNumber);
+                if (isNaN(targetNumber)) targetNumber = 0;
+                
+                let current = 0;
+                const duration = 1500;
+                const stepTime = 20;
+                const steps = duration / stepTime;
+                const increment = targetNumber / steps;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= targetNumber) {
+                        current = targetNumber;
+                        clearInterval(timer);
+                    }
+                    
+                    let displayNumber = Number.isInteger(targetNumber) ? Math.floor(current) : current.toFixed(1);
+                    entry.target.innerText = prefix + displayNumber + suffix;
+                }, stepTime);
+            }
+        });
+    }, { threshold: 0.3 });
+    
+    rollNumbers.forEach(el => rollObserver.observe(el));
+})();
+
+// ============================================
+// 3. ACTIVE NAV LINK & SMOOTH SCROLL
+// ============================================
+(function() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('nav .nav-links a');
+    
+    function updateActiveNav() {
+        let current = '';
+        const scrollPos = window.scrollY + 200;
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                current = section.getAttribute('id');
+            }
+        });
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active-nav');
+            const href = link.getAttribute('href').substring(1);
+            if (href === current) link.classList.add('active-nav');
+        });
+    }
+    
+    window.addEventListener('scroll', updateActiveNav);
+    window.addEventListener('load', updateActiveNav);
+    
+    // Smooth scroll
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+})();
+
+// ============================================
+// 4. TYPING EFFECT FOR TAGLINE
+// ============================================
+(function() {
+    const taglineElement = document.querySelector('.hero-tagline');
+    if (!taglineElement) return;
+    
+    const texts = [
+        "Hello! Welcome to My Portofolio :)",
+        "Interested in collaborating or have questions?"
+    ];
+    
+    let textIndex = 0, charIndex = 0, isDeleting = false;
+    
+    function typeEffect() {
+        const currentText = texts[textIndex];
+        
+        if (isDeleting) {
+            taglineElement.textContent = currentText.substring(0, charIndex - 1);
+            charIndex--;
+        } else {
+            taglineElement.textContent = currentText.substring(0, charIndex + 1);
+            charIndex++;
+        }
+        
+        if (!isDeleting && charIndex === currentText.length) {
+            isDeleting = true;
+            setTimeout(typeEffect, 2000);
+            return;
+        }
+        
+        if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            textIndex = (textIndex + 1) % texts.length;
+            setTimeout(typeEffect, 500);
+            return;
+        }
+        
+        setTimeout(typeEffect, isDeleting ? 50 : 100);
+    }
+    
+    taglineElement.style.borderRight = '2px solid #ec4899';
+    typeEffect();
+})();
+
+// ============================================
+// 5. 3D TILT EFFECT FOR PROFILE IMAGE
+// ============================================
+(function() {
+    const profileImg = document.querySelector('.profile-new-img');
+    const container = document.querySelector('.hero-new-photo');
+    if (!profileImg || !container) return;
+    
+    container.addEventListener('mousemove', function(e) {
+        const rect = container.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateY = ((x - centerX) / centerX) * 15;
+        const rotateX = ((centerY - y) / centerY) * 15;
+        
+        profileImg.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+        profileImg.style.transition = 'transform 0.1s ease-out';
+    });
+    
+    container.addEventListener('mouseleave', function() {
+        profileImg.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+        profileImg.style.transition = 'transform 0.4s ease-out';
+    });
+})();
+
+// ============================================
+// 6. SCROLL REVEAL (EXCLUDE ANTIKODE)
+// ============================================
+(function() {
+    const revealElements = document.querySelectorAll('section:not(#antikode), .about-card, .cg-box, .impact-card, .blue-stat, .testi-card, .ak-dual-item, .project-card, .wording-card, .pillar-item, .highlight-card, .prod-stat, .ch-card, .tk-item, .other-card, .video-card, .sw-thumb-card, .catalog-item, .help-box, .strategy-line, .approach-box, .before-after-box, .ecosystem-box, .progression-box, .wf-flow-box, .alva-flow-box');
+    
+    revealElements.forEach(el => el.classList.add('scroll-reveal'));
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    
+    document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+    
+    // Pastikan section Antikode langsung terlihat
+    const antikodeSection = document.getElementById('antikode');
+    if (antikodeSection) {
+        antikodeSection.style.opacity = '1';
+        antikodeSection.style.transform = 'translateY(0)';
+        antikodeSection.classList.remove('scroll-reveal');
+    }
+    
+    // Pastikan semua child elements di Antikode tetap terlihat
+    document.querySelectorAll('#antikode .scroll-reveal').forEach(el => {
+        el.classList.remove('scroll-reveal');
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+    });
+})();
+
+// ============================================
+// 7. PROJECT FILTER BUTTONS
+// ============================================
+(function() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    if (filterBtns.length === 0) return;
+    
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active-filter'));
+            btn.classList.add('active-filter');
+            
+            const filterValue = btn.getAttribute('data-filter');
+            
+            projectCards.forEach(card => {
+                if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeSlideUp 0.4s ease forwards';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+})();
+
+// ============================================
+// 8. PROJECT MODAL
+// ============================================
+const projectsData = [
+    {
+        title: "BLINDBOX SEEDKEEPERS",
+        category: "Campaign",
+        description: "A sustainability campaign for Earth Festival 2026 that combines the excitement of blindbox unboxing with eco-friendly seed planting.",
+        longDescription: "This was my first campaign project, created from scratch as a merchandise proposal for @earthfestival.id / Earth Festival 2026. As part of my submission, I proposed a blindbox concept: something different from typical event merch. I developed six exclusive characters that embrace earth elements (earth, water, fire, cloud, leaf, rainbow), each with their own lore, personality, and rarity level.<br><br>The concept goes beyond a typical blindbox. To align with Earth Festival's mission of sustainability and the 3R principles (Reuse, Reduce, Recycle), every box contains a handmade amigurumi character, real seeds to plant, and packaging made from recycled paper. It is crafted to encourage action, and will last, not a disposable item only. I also designed a two-level game ecosystem using ARG mechanics, where collectors solve riddles, post proof on social media, and unlock exclusive access to pop-up events and discounts.<br><br>I researched two local vendors, calculated production costs (HPP Rp145K per box), set a selling price of Rp219K, and projected a 47.27% ROI across presale and a three-day main event. The concept was well received and approved in principle, but ultimately put on hold because the team decided to focus on other priorities for the year.",
+        image: "https://i.postimg.cc/6pDw6YjB/meet-THE-SEED-KEEPERS.png",
+        media: [
+            { type: "image", url: "https://i.postimg.cc/D0t4Pqv9/1.png", title: "Blindbox Campaign Teaser", views: "The SeedKeepers" },
+            { type: "image", url: "https://i.postimg.cc/d137MWDp/2.png", title: "Campaign Teaser", views: "Experience" }
+        ],
+        tech: ["Campaign Strategy", "Concept Development", "Character Design", "Financial Projection"],
+        demoLink: "https://drive.google.com/file/d/1FXKsr5Bdu3dFxP1xPqcD9kAzUccKPNE4/view?usp=sharing",
+        results: "This project taught me how to turn a creative idea into a complete, numbers-backed proposal and how to accept that timing matters as much as quality.",
+        linkable: false
+    },
+    {
+        title: "HEALME OFFICIAL",
+        category: "Content Creation",
+        description: "Led a team to build a TikTok brand from scratch  including content strategy, video production, and brand building for dietary tips and healthy lifestyle",
+        longDescription: "This was a university social media course project. The goal was to use digital media as a tool to produce innovative content that benefits society, aligned with SDG 3 (Good Health and Well-Being).<br><br>The Brand: HEALME (Healthy Me) is a TikTok account dedicated to sharing dietary tips, healthy lifestyle content, and engaging meal plans. The target audience is people struggling with obesity or those on a diet journey looking for effective, sustainable healthy habits.<br><br>I led a small team of 5 members. My responsibilities included delegating tasks (content research, scripting, filming, editing), ensuring deadlines were met, maintaining brand consistency, and editing most of the video content myself. I also coordinated with team members to align every content element from location, music, title, hashtags, conflict, solution, to gimmick.",
+        image: "https://i.postimg.cc/fTY6zJ0y/image.png",
+        media: [
+            { type: "image", url: "https://i.postimg.cc/d0WbVc7n/image.png", link: "https://www.tiktok.com/@healme.official/photo/7434355070466116882", title: "Pola Makanan Diet", views: "16.6K views" },
+            { type: "image", url: "https://i.postimg.cc/tC52jtnJ/image.png", link: "https://www.tiktok.com/@healme.official/photo/7439352567299296567", title: "5 Kesalahan Diet IF", views: "4.7K views" },
+            { type: "image", url: "https://i.postimg.cc/ZK7pHfyp/image.png", link: "https://www.tiktok.com/@healme.official/video/7423330805637795078", title: "Weight Loss vs Fat Loss", views: "3.8K views" },
+            { type: "image", url: "https://i.postimg.cc/bNJ2ZQFk/image.png", link: "https://www.tiktok.com/@healme.official/video/7421558920440827142", title: "Cheating Day Don't Worry!", views: "3.6K views" }
+        ],
+        tech: ["CapCut", "TikTok Trends", "Video Editing", "Content Strategy", "Team Leadership"],
+        demoLink: "https://www.tiktok.com/@healme.official",
+        results: "Reaching over 30K+ combined views across 4 selected content pieces.",
+        linkable: true
+    },
+    {
+        title: "HEIHA TOUR TRAVEL",
+        category: "Content Creation",
+        description: "Created 5 Instagram feed designs and 1 story design for a tour and travel brand, including a visual system for future consistency.",
+        longDescription: "I was responsible for the visual content design based on the client's requests. Each design was tailored to highlight destinations, travel tips, and promotional content to attract potential travelers.<br><br>I chose blue and white as the primary colors to reflect trust, professionalism, and a fresh travel vibe, aligning with the brand's identity as a tour operator. The layout was structured to be clean, scannable, and visually engaging.<br><br>The brand had no dedicated designer before this. I didn't just create individual posts, I built a visual system and mood board so future designers could maintain consistency. Unfortunately, the client didn't continue the visual direction after my work, likely due to not having a designer on board yet. But the system is ready whenever they are.",
+        image: "https://i.postimg.cc/L5tt0CJj/image.png",
+        media: [
+            { type: "image", url: "https://i.postimg.cc/m29NLvX5/image.png", link: "https://www.instagram.com/p/DUFmzP7EXf_/", title: "Brand Promotion", views: "Feed Design" },
+            { type: "image", url: "https://i.postimg.cc/VNKXx0LY/image.png", link: "https://www.instagram.com/p/DUKZ83ykQxK/", title: "Destination Documentary", views: "Carousel Feed Design" },
+            { type: "image", url: "https://i.postimg.cc/nc1rSbLJ/image.png", link: "https://www.instagram.com/p/DUSPpe1kYJZ/", title: "Destination Documentary", views: "Carousel Feed Design" },
+            { type: "image", url: "https://i.postimg.cc/QtqvGbK9/image.png", link: "https://www.instagram.com/p/DUZ_zUekbZ2/", title: "Destination Documentary", views: "Carousel Feed Design" },
+            { type: "image", url: "https://i.postimg.cc/N0qnKV1f/image.png", link: "https://www.instagram.com/p/DUkTtT5EQ_6/", title: "Destination Recommendation", views: "Feed Design" },
+            { type: "image", url: "https://i.postimg.cc/Vvr9Bs83/image.png", link: "https://www.instagram.com/stories/highlights/18133346266512094/", title: "Brand Promotion", views: "Story Design" }
+        ],
+        tech: ["Canva", "Feed Design", "Story Design", "Visual Identity", "Moodboard"],
+        demoLink: "https://www.instagram.com/heihatourtravel",
+        results: "6 designs delivered (5 feed + 1 story) for brand consistency",
+        linkable: true
+    }
+];
+
+(function() {
+    const modal = document.getElementById('projectModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalCategory = document.getElementById('modalCategory');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalLongDesc = document.getElementById('modalLongDesc');
+    const modalContentGrid = document.getElementById('modalContentGrid');
+    const modalTech = document.getElementById('modalTech');
+    const modalResults = document.getElementById('modalResults');
+    const modalLinks = document.getElementById('modalLinks');
+    const closeBtn = document.querySelector('.modal-close');
+    
+    function openModal(projectId) {
+        const project = projectsData[projectId];
+        if (!project) return;
+        
+        modalTitle.textContent = project.title;
+        modalCategory.textContent = project.category;
+        modalDesc.textContent = project.description;
+        
+        // Long description
+        if (modalLongDesc) {
+            if (project.longDescription) {
+                modalLongDesc.innerHTML = project.longDescription;
+                modalLongDesc.style.display = 'block';
+            } else {
+                modalLongDesc.style.display = 'none';
+            }
+        }
+        
+        // Media grid
+        if (modalContentGrid && project.media && project.media.length > 0) {
+            modalContentGrid.innerHTML = '';
+            project.media.forEach(media => {
+                const hasLink = media.link && media.link !== '#' && media.link !== '';
+                const isLinkable = media.linkable !== false;
+                const gridItem = document.createElement('div');
+                gridItem.className = 'modal-content-item';
+                if (hasLink && isLinkable) {
+                    gridItem.onclick = () => window.open(media.link, '_blank');
+                    gridItem.style.cursor = 'pointer';
+                }
+                gridItem.innerHTML = `
+                    <div class="modal-content-img">
+                        <img src="${media.url}" alt="${media.title || ''}">
+                        ${hasLink && isLinkable ? '<div class="modal-content-play">▶</div>' : ''}
+                    </div>
+                    <div class="modal-content-caption">
+                        <div class="caption-title">${media.title || ''}</div>
+                        <div class="caption-views">${media.views || ''}</div>
+                    </div>
+                `;
+                modalContentGrid.appendChild(gridItem);
+            });
+        }
+        
+        // Tech stack
+        if (modalTech) {
+            modalTech.innerHTML = '';
+            project.tech.forEach(tech => {
+                const span = document.createElement('span');
+                span.textContent = tech;
+                modalTech.appendChild(span);
+            });
+        }
+        
+        // Results
+        if (modalResults && project.results) {
+            modalResults.innerHTML = `<strong>📊 Key Results:</strong> ${project.results}`;
+        }
+        
+        // Links
+        if (modalLinks) {
+            modalLinks.innerHTML = '';
+            if (project.demoLink) {
+                const demoLink = document.createElement('a');
+                demoLink.href = project.demoLink;
+                demoLink.target = '_blank';
+                demoLink.className = 'modal-link';
+
+                demoLink.innerHTML = '🔗 View More';
+                modalLinks.appendChild(demoLink);
+            }
+        }
+        
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeModal() {
+        modal.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+    
+    // Event listeners
+    document.querySelectorAll('.project-card').forEach((card, index) => {
+        card.addEventListener('click', (e) => {
+
+            if (e.target.closest('a')) return;
+            openModal(index);
+        });
+    });
+    
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (modal) modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal?.classList.contains('show')) closeModal(); });
+})();
+</script>
+</body>
+</html>
