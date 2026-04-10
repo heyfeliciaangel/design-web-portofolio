@@ -21,6 +21,8 @@ img {max-width: 100%;height: auto;}
     .progress-text {text-align: center;}
     .impact-row {grid-template-columns: 1fr !important;gap: 16px !important;}
     .what-i-worked-on-grid {grid-template-columns: 1fr !important;gap: 20px !important;}
+    .blue-stats {display: flex !important;flex-direction: column !important;gap: 16px !important;}
+    .blue-stat {width: 100% !important;margin: 0 auto !important;}
 }
 
 /* LOADER */
@@ -542,6 +544,8 @@ section.scroll-reveal:nth-of-type(7){transition-delay:0.35s;}
     .hero-name{font-size:42px;padding:0 20px;}
     .modal-media img{width:100%;}
 }
+/* HAMBURGER */
+.hamburger{display:none;flex-direction:column;cursor:pointer;gap:5px;z-index:101;}.hamburger span{width:25px;height:3px;background:white;border-radius:3px;transition:all 0.3s ease;}.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}.hamburger.active span:nth-child(2){opacity:0;}.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(7px,-7px);}@media (max-width:768px){.hamburger{display:flex;}.nav-links{position:fixed;top:70px;left:-100%;width:100%;height:calc(100vh - 70px);background:rgba(9,9,11,0.95);backdrop-filter:blur(12px);flex-direction:column;align-items:center;justify-content:center;gap:30px;transition:left 0.3s ease;z-index:100;}.nav-links.active{left:0;}.nav-links a{font-size:18px;padding:10px;}}
 /* BATAS CSS KELAR */
 </style>
 </head>
@@ -574,7 +578,23 @@ section.scroll-reveal:nth-of-type(7){transition-delay:0.35s;}
     <div class="bubble" style="width: 30px; height: 30px; left: 60%; animation-duration: 30s; animation-delay: 4.5s;"></div>
     <div class="bubble" style="width: 65px; height: 65px; left: 80%; animation-duration: 26s; animation-delay: 8s;"></div>
 </div>
-<nav><div class="logo">F<span>.</span>A<span>.</span>A</div><div class="nav-links"><a href="#about">About Me</a><a href="#bluiestore">Bluiestore</a><a href="#bhakti">Bhakti Maitreya</a><a href="#antikode">Antikode</a><a href="#projects">Projects</a><a href="#contact">Contact</a></div></nav>
+<nav>
+    <div class="logo">F<span>.</span>A<span>.</span>A</div>
+    <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    
+    <div class="nav-links" id="nav-links">
+        <a href="#about">About Me</a>
+        <a href="#bluiestore">Bluiestore</a>
+        <a href="#bhakti">Bhakti Maitreya</a>
+        <a href="#antikode">Antikode</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
 
 <section class="hero"><div class="hero-badge"><span class="dot"></span> PORTFOLIO 2026 — Updated Version</div><div class="hero-name">Felicia Angelica Agatha</div><div class="hero-tagline">Hello! Welcome to my portofolio.</div><a href="#hero-new" class="hero-cta">Take a look ↓</a><div class="hero-scroll"><span>SCROLL</span><div class="arrow"></div></div></section>
 
@@ -2422,6 +2442,28 @@ const projectsData = [
     if (closeBtn) closeBtn.addEventListener('click', closeModal);
     if (modal) modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal?.classList.contains('show')) closeModal(); });
+})();
+// ============================================
+// 9. HAMBURGER
+// ============================================
+(function() {
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+        
+        // Tutup menu saat klik link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+    }
 })();
 </script>
 </body>
