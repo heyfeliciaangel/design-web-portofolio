@@ -146,11 +146,6 @@ section{padding:100px 48px;max-width:1200px;margin:0 auto;}
 .impact-card .num{font-size:30px;font-weight:800;letter-spacing:-0.02em;margin-bottom:2px;background:linear-gradient(135deg,#ec4899,#f97316,#ec4899);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:textShine 3s linear infinite;}
 @keyframes textShine{0%{background-position:0% 50%;}100%{background-position:200% 50%;}}
 .impact-card .met{font-size:11px;color:#71717a;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;}
-.blue-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:36px;}
-.blue-stat{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:24px 20px;text-align:center;transition:transform 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.35s ease, box-shadow 0.35s ease;}
-.blue-stat:hover{transform:translateY(-5px);border-color:rgba(255,255,255,0.3);background:rgba(236,72,153,0.08);box-shadow:0 0 20px rgba(255,255,255,0.3),0 0 40px rgba(255,255,255,0.1),0 8px 25px rgba(0,0,0,0.2);}
-.blue-stat .num{font-size:30px;font-weight:800;margin-bottom:2px;background:linear-gradient(135deg,#ec4899,#f97316,#ec4899);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:textShine 3s linear infinite;}
-.blue-stat .met{font-size:11px;color:#71717a;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;}
 
 /* APPROACH & BEFORE-AFTER */
 .approach-box{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:32px;margin-bottom:36px;}
@@ -724,18 +719,18 @@ section.scroll-reveal:nth-of-type(7){transition-delay:0.35s;}
     </div>
   </div>
 
-  <div class="blue-stats">
-    <div class="blue-stat">
-      <div class="num">200+</div>
-      <div class="met">Clients Served</div>
+  <div class="impact-row">
+    <div class="impact-card">
+        <div class="num">200+</div>
+        <div class="met">Clients Served</div>
     </div>
-    <div class="blue-stat">
-      <div class="num">3 Mio</div>
-      <div class="met">IDR Total Revenue</div>
+    <div class="impact-card">
+        <div class="num">3 Mio</div>
+        <div class="met">IDR Total Revenue</div>
     </div>
-    <div class="blue-stat">
-      <div class="num">+1K</div>
-      <div class="met">Telegram Channel Subscribers</div>
+    <div class="impact-card">
+        <div class="num">+1K</div>
+        <div class="met">Telegram Channel Subscribers</div>
     </div>
   </div>
 
@@ -2045,7 +2040,7 @@ mademoiselle of goodness pyrenees alight embedded with density O! threw wanderer
 // 2. ROLLING NUMBER EFFECT
 // ============================================
 (function() {
-    const rollNumbers = document.querySelectorAll('.impact-card .num, .blue-stat .num');
+    const rollNumbers = document.querySelectorAll('.impact-card .num');
     
     const rollObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -2200,7 +2195,7 @@ mademoiselle of goodness pyrenees alight embedded with density O! threw wanderer
 // 6. SCROLL REVEAL (EXCLUDE ANTIKODE)
 // ============================================
 (function() {
-    const revealElements = document.querySelectorAll('section:not(#antikode), .about-card, .cg-box, .impact-card, .blue-stat, .testi-card, .ak-dual-item, .project-card, .wording-card, .pillar-item, .highlight-card, .prod-stat, .ch-card, .tk-item, .other-card, .video-card, .sw-thumb-card, .catalog-item, .help-box, .strategy-line, .approach-box, .before-after-box, .ecosystem-box, .progression-box, .wf-flow-box, .alva-flow-box');
+    const revealElements = document.querySelectorAll('section:not(#antikode), .about-card, .cg-box, .impact-card, .testi-card, .ak-dual-item, .project-card, .wording-card, .pillar-item, .highlight-card, .prod-stat, .ch-card, .tk-item, .other-card, .video-card, .sw-thumb-card, .catalog-item, .help-box, .strategy-line, .approach-box, .before-after-box, .ecosystem-box, .progression-box, .wf-flow-box, .alva-flow-box');
     
     revealElements.forEach(el => el.classList.add('scroll-reveal'));
     
