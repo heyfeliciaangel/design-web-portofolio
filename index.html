@@ -11,8 +11,17 @@
 html{scroll-behavior:smooth;}
 body{font-family:'Inter',sans-serif;background:#09090b;color:#fff;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x: hidden;}
 img {max-width: 100%;height: auto;}
-@media (max-width: 768px) {body {font-size: 14px;}.about-grid {grid-template-columns: 1fr !important;gap: 24px !important;}
-.software-tools-card {grid-column: span 1 !important;}}
+@media (max-width: 768px) {
+    body {font-size: 14px;}
+    .about-grid {grid-template-columns: 1fr !important;gap: 24px !important;}
+    .software-tools-card {grid-column: span 1 !important;}
+    .loader-overlay {text-align: center;}
+    .loader-logo {text-align: center;width: 100%;}
+    .progress-track {margin: 0 auto;}
+    .progress-text {text-align: center;}
+    .impact-row {grid-template-columns: 1fr !important;gap: 16px !important;}
+    .what-i-worked-on-grid {grid-template-columns: 1fr !important;gap: 20px !important;}
+}
 
 /* LOADER */
 .loader-overlay{position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#09090b;transition:opacity 0.5s ease, visibility 0.5s ease;}
@@ -1310,7 +1319,7 @@ mademoiselle of goodness pyrenees alight embedded with density O! threw wanderer
 </div>
 
 <!-- 3 Kolom Grid -->
-<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:32px;">
+<div class="what-i-worked-on-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:32px;">
   
   <!-- Content Production -->
   <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:24px;">
@@ -2417,3 +2426,4 @@ const projectsData = [
 </script>
 </body>
 </html>
+
