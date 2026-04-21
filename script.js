@@ -3,11 +3,11 @@
 // ============================================
 (function() {
     const roles = [
-        'Content Ops Coordinator',
+        'Content Strategist',
         'Social Media Specialist',
-        'Freelance Writer',
-        'Cross-functional Collaborator',
+        'Content Creator',
         'Brand Storyteller',
+        'Content System Builder',
     ];
     const el = document.getElementById('typewriter-text');
     if (!el) return;
