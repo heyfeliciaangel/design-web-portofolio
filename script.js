@@ -302,21 +302,6 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
     
     document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
-    
-    // Pastikan section Antikode langsung terlihat
-    const antikodeSection = document.getElementById('antikode');
-    if (antikodeSection) {
-        antikodeSection.style.opacity = '1';
-        antikodeSection.style.transform = 'translateY(0)';
-        antikodeSection.classList.remove('scroll-reveal');
-    }
-    
-    // Pastikan semua child elements di Antikode tetap terlihat
-    document.querySelectorAll('#antikode .scroll-reveal').forEach(el => {
-        el.classList.remove('scroll-reveal');
-        el.style.opacity = '1';
-        el.style.transform = 'translateY(0)';
-    });
 })();
 
 // ============================================
