@@ -877,5 +877,14 @@ section.scroll-reveal:nth-of-type(7){transition-delay:0.35s;}
   flex-shrink: 0;
   margin-top: 2px;
 }
+#antikode .subtab-pane {
+    display: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+#antikode .subtab-pane.is-active {
+    display: block !important;
+}
 
 /* BATAS CSS KELAR */
